@@ -2,7 +2,7 @@
 *.class
 .idea
 *.iml
-*.gitignore
+.gitignore
 
 # Compiled class file
 *.class
