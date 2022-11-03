@@ -1,10 +1,10 @@
 package homework01;/*
+
  * Java Prof. Homework #01
  *
  * @author Sergey Bugaienko
  * @version 01.11.2022
  */
-
 
 public class HomeWork01 {
     public static void main(String[] args) {
