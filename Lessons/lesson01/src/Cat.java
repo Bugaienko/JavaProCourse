@@ -15,7 +15,7 @@ public class Cat {
 
     @Override
     public String toString() {
-        return "Cat{" +
+        return "homework01.Cat{" +
                 "name='" + name + '\'' +
                 ", color='" + color + '\'' +
                 ", age=" + age +

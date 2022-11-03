@@ -1,3 +1,5 @@
+package homework01;
+
 public class Cat {
     private String name;
     private String color;
@@ -15,7 +17,7 @@ public class Cat {
 
     @Override
     public String toString() {
-        return "Cat{" +
+        return "homework01.Cat{" +
                 "name='" + name + '\'' +
                 ", color='" + color + '\'' +
                 ", age=" + age +
