@@ -4,6 +4,7 @@ public abstract class Animal {
     protected String name;
     protected String color;
     protected int age;
+    protected String kind;
 
     public abstract void voice();
 
@@ -18,10 +19,11 @@ public abstract class Animal {
 
     @Override
     public String toString() {
-        return "{" +
+        return ""+kind+" { " +
                 "name='" + name + '\'' +
                 ", color='" + color + '\'' +
                 ", age=" + age +
-                '}';
+                " }";
     }
+
 }
