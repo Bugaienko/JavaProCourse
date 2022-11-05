@@ -7,6 +7,7 @@ public class Cat extends Animal {
     }
     public Cat() {
         super();
+        this.kind = "Cat";
     }
     @Override
     public void voice() {
