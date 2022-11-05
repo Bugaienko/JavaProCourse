@@ -19,7 +19,7 @@ public abstract class Animal {
 
     @Override
     public String toString() {
-        return ""+kind+" { " +
+        return "" + kind + " { " +
                 "name='" + name + '\'' +
                 ", color='" + color + '\'' +
                 ", age=" + age +

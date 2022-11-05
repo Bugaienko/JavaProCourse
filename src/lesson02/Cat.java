@@ -5,11 +5,9 @@ public class Cat extends Animal {
         super(name, color, age);
         this.kind = "Cat";
     }
-
     public Cat() {
         super();
     }
-
     @Override
     public void voice() {
         System.out.println("Meow!");
