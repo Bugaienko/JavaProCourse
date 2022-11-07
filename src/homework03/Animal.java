@@ -5,6 +5,7 @@ import java.util.Arrays;
 abstract public class Animal implements IAnimal {
     protected int runLimit;
     protected int swimLimit;
+    protected String kind;
     static int counter = 0;
     static Animal[] animals = new Animal[0];
 
@@ -24,6 +25,20 @@ abstract public class Animal implements IAnimal {
         return counter;
     }
 
+    public String swim(int distance) {
+        if (distance > swimLimit) {
+            return "Такое препятствие я не могу преодолеть";
+        }
+        return kind + " проплыла " + distance + "м.";
+    }
+
+    public String run(int distance) {
+        if (distance > runLimit) {
+            return "Такое препятствие я не могу преодолеть";
+        }
+        return kind + " пробежала " + distance + "м.";
+    }
+
     protected void showAllAnimals() {
         for (Animal animal : animals) {
             System.out.printf(animal.toString() + "; ");
@@ -35,7 +50,9 @@ abstract public class Animal implements IAnimal {
     }
 
     @Override
-    public abstract String toString();
+    public String toString() {
+        return this.kind;
+    }
 }
 
 
