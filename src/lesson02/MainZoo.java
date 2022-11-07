@@ -7,8 +7,10 @@ package lesson02;
  * @version 03.11.22 -
  */
 
+
 public class MainZoo {
     public static void main(String[] args) {
+
         Cat cat = new Cat("Murzik", "red", 3);
         Dog dog = new Dog("Scharik", "black", 5);
 

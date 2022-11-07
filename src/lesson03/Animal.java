@@ -1,16 +1,12 @@
-package lesson02;
+package lesson03;
 
-public abstract class Animal {
+abstract public class Animal implements IAnimal {
     protected String name;
     protected String color;
     protected int age;
     protected String kind;
     private boolean test;
 
-    public abstract void voice();
-
-    public Animal() {
-    }
 
     public Animal(String name, String color, int age) {
         this.name = name;
