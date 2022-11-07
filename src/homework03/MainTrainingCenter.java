@@ -28,6 +28,8 @@ public class MainTrainingCenter {
             System.out.println(animal);
         }
 
+        System.out.println("Второй способ определения общего количества созданных животных: " + cat.getAllAnimals().length);
+
     }
 }
 
