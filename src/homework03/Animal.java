@@ -51,7 +51,7 @@ abstract public class Animal implements IAnimal {
 
     @Override
     public String toString() {
-        return this.kind;
+        return kind;
     }
 }
 
