@@ -27,16 +27,16 @@ abstract public class Animal implements IAnimal {
 
     public String swim(int distance) {
         if (distance > swimLimit) {
-            return "Такое препятствие я не могу преодолеть";
+            return "This obstacle I cannot overcome.";
         }
-        return kind + " проплыла " + distance + "м.";
+        return kind + " swam " + distance + "м.";
     }
 
     public String run(int distance) {
         if (distance > runLimit) {
-            return "Такое препятствие я не могу преодолеть";
+            return "This obstacle I cannot overcome.";
         }
-        return kind + " пробежала " + distance + "м.";
+        return kind + " ran " + distance + "м.";
     }
 
     protected void showAllAnimals() {

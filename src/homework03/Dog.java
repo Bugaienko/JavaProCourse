@@ -4,7 +4,7 @@ public class Dog extends Animal {
 
     public Dog() {
         super();
-        kind = "Собака";
+        kind = "The Dog";
         runLimit = 500;
         swimLimit = 10;
     }

@@ -3,13 +3,13 @@ package homework03;
 public class Cat extends Animal {
     public Cat() {
         super();
-        kind = "Кошка";
+        kind = "The Cat";
         runLimit = 200;
     }
 
     @Override
     public String swim(int distance) {
-        return "Я не умею плавать. Такое препятствие я не могу преодолеть";
+        return "I can not swim. This obstacle I cannot overcome.";
     }
 
 }

@@ -21,14 +21,14 @@ public class MainTrainingCenter {
 
         System.out.println();
 
-        System.out.println("Всего создано животных: " + dog2.getAnimalsCounter());
+        System.out.println("Total Animals Created: " + dog2.getAnimalsCounter());
         cat.showAllAnimals();
 
         for (Animal animal: cat.getAllAnimals()) {
             System.out.println(animal);
         }
 
-        System.out.println("Второй способ определения общего количества созданных животных: " + cat.getAllAnimals().length);
+        System.out.println("The second way to determine the total number of created animals: " + cat.getAllAnimals().length);
 
     }
 }
