@@ -29,14 +29,14 @@ abstract public class Animal implements IAnimal {
         if (distance > swimLimit) {
             return "This obstacle I cannot overcome.";
         }
-        return kind + " swam " + distance + "м.";
+        return kind + " swam " + distance + "m.";
     }
 
     public String run(int distance) {
         if (distance > runLimit) {
             return "This obstacle I cannot overcome.";
         }
-        return kind + " ran " + distance + "м.";
+        return kind + " ran " + distance + "m.";
     }
 
     protected void showAllAnimals() {
