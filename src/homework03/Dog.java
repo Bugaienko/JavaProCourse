@@ -2,11 +2,11 @@ package homework03;
 
 public class Dog extends Animal {
 
-    public Dog() {
+    public Dog(int runLimit, int swimLimit) {
         super();
         kind = "The Dog";
-        runLimit = 500;
-        swimLimit = 10;
+        this.runLimit = runLimit;
+        this.swimLimit = swimLimit;
     }
 
 }

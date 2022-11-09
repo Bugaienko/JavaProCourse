@@ -51,7 +51,11 @@ abstract public class Animal implements IAnimal {
 
     @Override
     public String toString() {
-        return kind;
+        return kind + " {" +
+                "runLimit=" + runLimit +
+                ", swimLimit=" + swimLimit +
+                "}";
+
     }
 }
 

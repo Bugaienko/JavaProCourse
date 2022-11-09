@@ -9,9 +9,9 @@ package homework03;
 
 public class MainTrainingCenter {
     public static void main(String[] args) {
-        Dog dog1 = new Dog();
-        Cat cat = new Cat();
-        Dog dog2 = new Dog();
+        Dog dog1 = new Dog(500, 10);
+        Cat cat = new Cat(200);
+        Dog dog2 = new Dog(350, 15);
 
         System.out.println(dog1.run(100));
         System.out.println(dog1.swim(8));
