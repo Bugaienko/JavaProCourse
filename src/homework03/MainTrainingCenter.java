@@ -1,6 +1,6 @@
 package homework03;
 
-/*
+/**
  * Java Pro. Homework #03
  *
  * @author Sergey Bugaenko
@@ -21,7 +21,7 @@ public class MainTrainingCenter {
 
         System.out.println();
 
-        System.out.println("Total Animals Created: " + dog2.getAnimalsCounter());
+        System.out.println("Total Animals Created: " + Animal.getAnimalsCounter());
         cat.showAllAnimals();
 
         for (Animal animal: cat.getAllAnimals()) {

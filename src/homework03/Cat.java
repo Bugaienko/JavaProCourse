@@ -2,9 +2,8 @@ package homework03;
 
 public class Cat extends Animal {
     public Cat(int runLimit) {
-        super();
+        super(runLimit);
         kind = "The Cat";
-        this.runLimit = runLimit;
     }
 
     @Override

@@ -6,10 +6,11 @@ abstract public class Animal implements IAnimal {
     protected int runLimit;
     protected int swimLimit;
     protected String kind;
-    static int counter = 0;
-    static Animal[] animals = new Animal[0];
+    private static int counter = 0;
+    private static Animal[] animals = new Animal[0];
 
-    public Animal() {
+    public Animal(int runLimit) {
+        this.runLimit = runLimit;
         counter++;
         animals = addAnimal(animals, this);
     }
@@ -21,7 +22,7 @@ abstract public class Animal implements IAnimal {
         return temp;
     }
 
-    protected int getAnimalsCounter() {
+    public static int getAnimalsCounter() {
         return counter;
     }
 
@@ -39,13 +40,13 @@ abstract public class Animal implements IAnimal {
         return kind + " ran " + distance + "m.";
     }
 
-    protected void showAllAnimals() {
+    public void showAllAnimals() {
         for (Animal animal : animals) {
             System.out.printf(animal.toString() + "; ");
         }
         System.out.println();
     }
-    protected Animal[] getAllAnimals() {
+    public Animal[] getAllAnimals() {
         return animals;
     }
 
