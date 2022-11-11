@@ -21,7 +21,7 @@ public class MainTrainingCenter {
 
 
         ICompetitor human1 = new Human(100, 3);
-        ICompetitor human2 = new Human(150, 12);
+        ICompetitor human2 = new Human(200, 12);
         ICompetitor robot1 = new Robot(250, 30);
         ICompetitor cat1 = new Cat(150, 30);
 
