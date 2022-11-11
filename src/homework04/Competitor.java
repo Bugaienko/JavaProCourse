@@ -37,12 +37,11 @@ abstract class Competitor implements ICompetitor {
     }
 
     public int move(IBarrier barrier) {
+        System.out.printf("%s vs %s -> ", this, barrier);
         if (barrier.getType().equals("wall")) {
-            System.out.printf("%s vs %s -> ", this, barrier);
             return jump(barrier.getSize());
         }
         if (barrier.getType().equals("track")) {
-            System.out.printf("%s vs %s -> ", this, barrier);
             return run(barrier.getSize());
         }
         return -1;
