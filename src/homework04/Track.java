@@ -1,6 +1,6 @@
 package homework04;
 
-public class Track implements  IBarrier {
+public class Track implements IBarrier {
     private int size;
     private String type;
 
@@ -15,5 +15,12 @@ public class Track implements  IBarrier {
 
     public String getType() {
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return type + " {" +
+                "size=" + size +
+                "}";
     }
 }

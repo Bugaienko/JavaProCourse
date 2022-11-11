@@ -16,4 +16,11 @@ public class Wall implements IBarrier {
     public String getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return type + " {" +
+                "size=" + size +
+                "}";
+    }
 }

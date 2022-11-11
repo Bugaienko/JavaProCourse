@@ -1,5 +1,8 @@
 package homework04;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Java Pro. Homework #04
  *
@@ -8,13 +11,48 @@ package homework04;
  */
 
 public class MainTrainingCenter {
+    private static List<IBarrier> barriers = new ArrayList<>();
+
+    public static List<IBarrier> getBarriers() {
+        return barriers;
+    }
+
     public static void main(String[] args) {
-        ICompetitor human1 = new Human(100, 10);
+
+
+        ICompetitor human1 = new Human(100, 3);
+        ICompetitor human2 = new Human(150, 12);
+        ICompetitor robot1 = new Robot(250, 30);
+        ICompetitor cat1 = new Cat(150, 30);
+
         IBarrier barrier1 = new Track(50);
         IBarrier barrier2 = new Track(150);
-        System.out.println(human1.move(barrier1));
-        System.out.println(human1.move(barrier2));
+        IBarrier barrier3 = new Track(200);
+        IBarrier wall1 = new Wall(8);
+        IBarrier wall2 = new Wall(10);
+        IBarrier wall3 = new Wall(25);
 
+        barriers.add(barrier1);
+        barriers.add(barrier2);
+        barriers.add(barrier3);
+        barriers.add(wall1);
+        barriers.add(wall2);
+        barriers.add(wall3);
+
+        System.out.println("All competitors list: " + Competitor.getList());
+        System.out.println("All barriers list: " + getBarriers());
+        System.out.println();
+
+
+        for (ICompetitor competitor : Competitor.getList()) {
+            for (IBarrier barrier : getBarriers()) {
+                if (competitor.move(barrier) < 0) {
+                    System.out.println("Competitor dropped out! Next!");
+                    break;
+                }
+            }
+            System.out.println();
+        }
     }
 }
 
