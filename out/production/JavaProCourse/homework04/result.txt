@@ -1,0 +1,26 @@
+All competitors list: [Human {rLimit= 100, jumpLimit= 3}, Human {rLimit= 200, jumpLimit= 12}, Robot {rLimit= 250, jumpLimit= 30}, Cat {rLimit= 150, jumpLimit= 30}]
+All barriers list: [track {size=50}, track {size=150}, track {size=200}, wall {size=8}, wall {size=10}, wall {size=25}]
+
+Human {rLimit= 100, jumpLimit= 3} vs track {size=50} -> Successfully ran
+Human {rLimit= 100, jumpLimit= 3} vs track {size=150} -> Couldn't ran
+Competitor dropped out! Next!
+
+Human {rLimit= 200, jumpLimit= 12} vs track {size=50} -> Successfully ran
+Human {rLimit= 200, jumpLimit= 12} vs track {size=150} -> Successfully ran
+Human {rLimit= 200, jumpLimit= 12} vs track {size=200} -> Successfully ran
+Human {rLimit= 200, jumpLimit= 12} vs wall {size=8} -> Successfully jump
+Human {rLimit= 200, jumpLimit= 12} vs wall {size=10} -> Successfully jump
+Human {rLimit= 200, jumpLimit= 12} vs wall {size=25} -> Couldn't jump
+Competitor dropped out! Next!
+
+Robot {rLimit= 250, jumpLimit= 30} vs track {size=50} -> Successfully ran
+Robot {rLimit= 250, jumpLimit= 30} vs track {size=150} -> Successfully ran
+Robot {rLimit= 250, jumpLimit= 30} vs track {size=200} -> Successfully ran
+Robot {rLimit= 250, jumpLimit= 30} vs wall {size=8} -> Successfully jump
+Robot {rLimit= 250, jumpLimit= 30} vs wall {size=10} -> Successfully jump
+Robot {rLimit= 250, jumpLimit= 30} vs wall {size=25} -> Successfully jump
+
+Cat {rLimit= 150, jumpLimit= 30} vs track {size=50} -> Successfully ran
+Cat {rLimit= 150, jumpLimit= 30} vs track {size=150} -> Successfully ran
+Cat {rLimit= 150, jumpLimit= 30} vs track {size=200} -> Couldn't ran
+Competitor dropped out! Next!
