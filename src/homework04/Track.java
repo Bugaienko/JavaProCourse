@@ -4,6 +4,10 @@ public class Track implements IBarrier {
     private int size;
     private String type;
 
+    public void go(ICompetitor competitor){
+
+    }
+
     public Track(int size) {
         this.size = size;
         type = "track";
