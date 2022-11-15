@@ -6,7 +6,7 @@ public class RubberArray {
 
     public void add(int item) {
         if (array == null) {
-            System.out.println("Null");
+//            System.out.println("Null");
             array = new int[0];
         }
         int[] newArray = new int[array.length + 1];
@@ -19,6 +19,44 @@ public class RubberArray {
         for (int item : ints) {
             add(item);
         }
+    }
+
+    public int indexOf(int item) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == item) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void replace(int item, int newItem) {
+        if (array != null) {
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] == item) array[i] = newItem;
+            }
+        }
+    }
+
+    public RubberArray subList(int fromIndex, int toIndex) {
+        RubberArray temp = new RubberArray();
+        if (array != null) {
+            for (int i = fromIndex; i < toIndex; i++) {
+                temp.add(array[i]);
+            }
+        }
+        return temp;
+    }
+
+
+    public int lastIndexOf(int item) {
+        int result = -1;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == item) {
+                result = i;
+            }
+        }
+        return result;
     }
 
     public int size() {
@@ -66,6 +104,7 @@ public class RubberArray {
         }
         return false;
     }
+
     public int[] toArray() {
         return array;
     }
