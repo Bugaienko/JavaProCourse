@@ -19,14 +19,6 @@ public class Box<T extends Fruit> {
         this.fruits.addAll(Arrays.asList(fruits));
     }
 
-//    public T getTypeFruit() {
-//        return typeFruit;
-//    }
-
-    //    public T getTypeFruit() {
-//        System.out.println(fruits.getClass().getName());
-//        return (T) fruits.getClass().getName();
-//    }
 
     public void add(T fruit) {
         fruits.add(fruit);
@@ -75,7 +67,7 @@ public class Box<T extends Fruit> {
 
     @Override
     public String toString() {
-        return "Box {"+ 
+        return "Box {"+
                 fruits +
                 " W= " + getWeight() +
                 '}';
