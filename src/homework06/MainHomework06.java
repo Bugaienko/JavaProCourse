@@ -18,23 +18,25 @@ public class MainHomework06 {
         box1.add(app1);
         box1.add(app2, app3, app4);
         System.out.println("box1-> " + box1);
-        Box<Apple> box2 = box1.cloneBox();
+        Box<Apple> box2 = box1.removeToOtherBox();
         Box<Apple> box5 = box2.copyBox();
         box5.add(app4);
 
-        System.out.println("box1-> " +box1);
-        System.out.println("box2-> " +box2);
-        System.out.println("box5-> " +box5);
+        System.out.println("box1-> " + box1);
+        System.out.println("box2-> " + box2);
+        System.out.println("box5-> " + box5);
 
         Orange or1 = new Orange(2);
         Orange or2 = new Orange(1.9);
         Orange or3 = new Orange(1.8);
         Orange or4 = new Orange(1.7);
+        Orange or5 = new Orange();
 
         Box<Orange> box3 = new Box<>();
         box3.add(or1, or2, or3, or4);
-        System.out.println("box3-> " +box3);
         Box<Orange> box4 = box3.copyBox();
+        box3.replaceFruit(or4, or5);
+        System.out.println("box3-> " + box3);
 
         Box<Orange> box6 = new Box<>(or4, or3, or2);
 

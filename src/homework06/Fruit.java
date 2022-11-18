@@ -3,7 +3,7 @@ package homework06;
 abstract class Fruit {
     protected double weight;
 
-    protected double getWeight(){
+    protected double getWeight() {
         return weight;
     }
 

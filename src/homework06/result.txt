@@ -1,0 +1,10 @@
+box1-> Box {[Apple {w=1.5}, Apple {w=1.8}, Apple {w=1.7}, Apple {w=1.2}] W= 6.2}
+box1-> Box {[] W= 0.0}
+box2-> Box {[Apple {w=1.5}, Apple {w=1.8}, Apple {w=1.7}, Apple {w=1.2}] W= 6.2}
+box5-> Box {[Apple {w=1.5}, Apple {w=1.8}, Apple {w=1.7}, Apple {w=1.2}, Apple {w=1.2}] W= 7.4}
+box3-> Box {[Orange {w=2.0}, Orange {w=1.9}, Orange {w=1.8}, Orange {w=1.5}] W= 7.2}
+box4-> Box {[Orange {w=2.0}, Orange {w=1.9}, Orange {w=1.8}, Orange {w=1.7}] W= 7.4}
+box6-> Box {[Orange {w=1.7}, Orange {w=1.8}, Orange {w=1.9}] W= 5.4}
+
+box2.compare(box4): false
+box5.compare(box4): true
