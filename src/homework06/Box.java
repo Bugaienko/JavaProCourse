@@ -7,8 +7,7 @@ import java.util.List;
 public class Box<T extends Fruit> {
     private final List<T> fruits = new ArrayList<>();
 
-    public Box() {
-    }
+    public Box() {}
 
     public Box(T fruit) {
         fruits.add(fruit);
@@ -59,13 +58,14 @@ public class Box<T extends Fruit> {
         return newBox;
     }
 
-    public boolean compare(Box box) {
+    public boolean compare(Box<?> box) {
         return getWeight() == box.getWeight();
     }
 
     public List<T> getFruits() {
         return fruits;
     }
+
 
     @Override
     public String toString() {

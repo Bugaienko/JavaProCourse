@@ -47,7 +47,6 @@ public class MainHomework06 {
         System.out.println("box2.compare(box4): " + box2.compare(box4));
         System.out.println("box5.compare(box4): " + box5.compare(box4));
 
-
     }
 }
 
