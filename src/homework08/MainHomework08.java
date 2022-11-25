@@ -31,7 +31,10 @@ public class MainHomework08 {
         rl.removeFirst();
         System.out.println(rl + " s:" + rl.size());
         System.out.println("f:" + rl.getFirstNode() + " l:" + rl.getLastNode());
-        System.out.println(rl.getFirst(1));
+
+        // get value by index
+        System.out.println("rl.getFirst(): " + rl.getFirst());
+        System.out.println("rl.getFirst(1): " + rl.getFirst(1));
 
 
     }
