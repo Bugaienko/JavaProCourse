@@ -95,17 +95,24 @@ public class RubberList<T> implements Iterable<T> {
                 last = null;
             }
             // DeletedItem is NOT first or last
-        } else if (size == 3) { // We have just 3 elements und must delete index = 1
-            first.next = last;
-            last.previous = first;
+        }
 
-        } else if (deleteMe.previous == first) { //we remove the element inside the structure that IS the neighbor of FIRST
-            first.next = deleteMe.next;
-            deleteMe.next.previous = first;
-        } else if (deleteMe.next == last) { //we remove the element inside the structure that IS the neighbor of LAST
-            deleteMe.previous.next = last;
-            last.previous = deleteMe.previous;
-        } else { // we remove an element inside the structure that IS NOT a neighbor of last or first
+        //Избыточные проверки при удалении элементов соседей first, last...
+        //Вполне работает и "общий" подход при количестве элементов больше 2
+
+//        else if (size == 3) { // We have just 3 elements und must delete index = 1
+//            first.next = last;
+//            last.previous = first;
+//
+//        } else if (deleteMe.previous == first) { //we remove the element inside the structure that IS the neighbor of FIRST
+//            first.next = deleteMe.next;
+//            deleteMe.next.previous = first;
+//        } else if (deleteMe.next == last) { //we remove the element inside the structure that IS the neighbor of LAST
+//            deleteMe.previous.next = last;
+//            last.previous = deleteMe.previous;
+//        }
+
+        else { // we remove an element inside the structure that IS NOT a neighbor of last or first
             deleteMe.previous.next = deleteMe.next;
             deleteMe.next.previous = deleteMe.previous;
         }

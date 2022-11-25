@@ -39,6 +39,11 @@ public class MainHomework08 {
         System.out.println("rl.set(1, val + 100): (old value) " + rl.set(1, val + 100));
         System.out.println(rl);
 
+        RubberList<String> rls = new RubberList<>();
+        rls.addLast("One", "Two", "Three");
+        System.out.println(rls);
+        rls.remove("Two");
+        System.out.println(rls + "  f:" + rls.getFirstNode() + " l:" + rls.getLastNode());
 
     }
 }
