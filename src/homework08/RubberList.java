@@ -112,7 +112,7 @@ public class RubberList<T> implements Iterable<T> {
 //            last.previous = deleteMe.previous;
 //        }
 
-        else { // we remove an element inside the structure that IS NOT a neighbor of last or first
+        else { // we remove an element inside the structure that IS NOT last or first
             deleteMe.previous.next = deleteMe.next;
             deleteMe.next.previous = deleteMe.previous;
         }
