@@ -6,7 +6,7 @@ package homework08;
  * @author Sergey Bugaenko
  * @version 24.11.22 - 25.11.22
  * @apiNote includes methods: addLast(value/values), addFirst, remove(value), removeAll(value), removeLast, removeFirst,
- * getFirst(by index)
+ * getFirst(by index), set(int index, T value)
  * implements Iterator;
  */
 public class MainHomework08 {
@@ -35,6 +35,9 @@ public class MainHomework08 {
         // get value by index
         System.out.println("rl.getFirst(): " + rl.getFirst());
         System.out.println("rl.getFirst(1): " + rl.getFirst(1));
+        Integer val = rl.getFirst(1);
+        System.out.println("rl.set(1, val + 100): (old value) " + rl.set(1, val + 100));
+        System.out.println(rl);
 
 
     }

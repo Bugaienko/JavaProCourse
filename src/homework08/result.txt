@@ -1,0 +1,11 @@
+[0; 6; 7; 8; 9; 9; 8; 9] s:8
+f:Node{0} l:Node{9}
+0; 6; 7; 8; 9; 9; 8; 9;
+after remove(9): [0; 6; 7; 8; 9; 8; 9] s:7
+after removeAll(9): [0; 6; 7; 8; 8] s:5
+[6; 7; 8] s:3
+f:Node{6} l:Node{8}
+rl.getFirst(): 6
+rl.getFirst(1): 7
+rl.set(1, val + 100): (old value) 7
+[6; 107; 8]

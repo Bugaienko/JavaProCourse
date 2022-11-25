@@ -175,6 +175,30 @@ public class RubberList<T> implements Iterable<T>{
         return last.value;
     }
 
+    public void setFirst(T value) {
+        first.value = value;
+    }
+
+    public void setLast(T value) {
+        last.value = value;
+    }
+
+    public T set(int index, T value) {
+        Node<T> temp = first;
+        int count = 0;
+        T result;
+        do {
+            if (index == count) {
+                result = temp.value;
+                temp.value = value;
+                return result;
+            }
+            count++;
+            temp = temp.next;
+        } while (temp.next != null);
+        return null;
+    }
+
 
     public Node<T> getLastNode() {
         return last;
