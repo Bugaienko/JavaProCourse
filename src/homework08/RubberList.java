@@ -153,11 +153,30 @@ public class RubberList<T> implements Iterable<T>{
         return size;
     }
 
-    public Node<T> getFirst() {
+    public Node<T> getFirstNode() {
         return first;
     }
 
-    public Node<T> getLast() {
+    public T getFirst() {
+        return first.value;
+    }
+
+    public T getFirst(int index){
+        int count = 0;
+        for (T el: this){
+            if (index == count){
+                return el;
+            }
+            count++;
+        }
+        return null;
+    }
+    public T getLast() {
+        return last.value;
+    }
+
+
+    public Node<T> getLastNode() {
         return last;
     }
 
