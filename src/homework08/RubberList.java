@@ -2,7 +2,7 @@ package homework08;
 
 import java.util.Iterator;
 
-public class RubberList<T> implements Iterable<T>{
+public class RubberList<T> implements Iterable<T> {
     private int size;
     private Node<T> first;
     private Node<T> last;
@@ -13,8 +13,7 @@ public class RubberList<T> implements Iterable<T>{
         } else if (last == null) { // У нас есть только first. Добавляем ноду в позицию last
             last = new Node<>(value, first, null);
             first.next = last;
-        }
-        else { // У нас есть 2 и более элементов
+        } else { // У нас есть 2 и более элементов
             Node<T> temp = last;
             last = new Node<>(value, temp, null);
             temp.next = last;
@@ -22,8 +21,8 @@ public class RubberList<T> implements Iterable<T>{
         size++;
     }
 
-    public void addLast(T...values){
-        for (T value: values){
+    public void addLast(T... values) {
+        for (T value : values) {
             addLast(value);
         }
     }
@@ -35,8 +34,7 @@ public class RubberList<T> implements Iterable<T>{
             last = first;
             first = new Node<>(value, null, last);
             last.previous = first;
-        }
-        else {
+        } else {
             Node<T> temp = first;
             first = new Node<>(value, null, temp);
             temp.previous = first;
@@ -133,11 +131,11 @@ public class RubberList<T> implements Iterable<T>{
         return false;
     }
 
-    public boolean removeFirst(){
-        if (first != null){
+    public boolean removeFirst() {
+        if (first != null) {
             if (size == 2) {
                 first = last;
-                first.previous =null;
+                first.previous = null;
                 last = null;
             } else {
                 first = first.next;
@@ -161,16 +159,17 @@ public class RubberList<T> implements Iterable<T>{
         return first.value;
     }
 
-    public T getFirst(int index){
+    public T getFirst(int index) {
         int count = 0;
-        for (T el: this){
-            if (index == count){
+        for (T el : this) {
+            if (index == count) {
                 return el;
             }
             count++;
         }
         return null;
     }
+
     public T getLast() {
         return last.value;
     }
@@ -238,11 +237,11 @@ public class RubberList<T> implements Iterable<T>{
         }
     }
 
-    public Iterator<T> iterator(){
+    public Iterator<T> iterator() {
         return new Itr();
     }
 
-    private class Itr implements Iterator<T>{
+    private class Itr implements Iterator<T> {
         Node<T> item;
 
         public Itr() {
