@@ -44,6 +44,9 @@ public class MainHomework08 {
         System.out.println(rls);
         rls.remove("Two");
         System.out.println(rls + "  f:" + rls.getFirstNode() + " l:" + rls.getLastNode());
+        rls.addLast("For", "Five");
+        System.out.println(rls);
+        System.out.println(rls.getFirst(0));
 
     }
 }

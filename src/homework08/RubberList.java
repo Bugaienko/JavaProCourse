@@ -167,12 +167,25 @@ public class RubberList<T> implements Iterable<T> {
     }
 
     public T getFirst(int index) {
-        int count = 0;
-        for (T el : this) {
-            if (index == count) {
-                return el;
+        if (index < 0 || index >= size) return null;
+        if (index <= size / 2) { // Если индекс в первой половине коллекции - начинаем с начала
+            int count = 0;
+            for (T el : this) {
+                if (index == count) {
+                    return el;
+                }
+                count++;
             }
-            count++;
+        } else { // Если индекс во второй половине коллекции - начинаем с конца
+            int count = size - 1;
+            Node<T> item = last;
+            do {
+                if (count == index) {
+                    return item.value;
+                }
+                count--;
+                item = item.previous;
+            } while (item != null);
         }
         return null;
     }
@@ -190,18 +203,36 @@ public class RubberList<T> implements Iterable<T> {
     }
 
     public T set(int index, T value) {
-        Node<T> temp = first;
-        int count = 0;
-        T result;
-        do {
-            if (index == count) {
-                result = temp.value;
-                temp.value = value;
-                return result;
+        if (index < 0 || index >= size) return null;
+
+        if (index <= size / 2) {
+            Node<T> temp = first;
+            int count = 0;
+            T result;
+            do {
+                if (index == count) {
+                    result = temp.value;
+                    temp.value = value;
+                    return result;
+                }
+                count++;
+                temp = temp.next;
+            } while (temp != null);
+        } else {
+            Node<T> temp = last;
+            int count = size -1;
+            T result;
+            while (temp != null){
+                if (index == count){
+                    result = temp.value;
+                    temp.value = value;
+                    return result;
+                }
+                count--;
+                temp = temp.previous;
             }
-            count++;
-            temp = temp.next;
-        } while (temp.next != null);
+        }
+
         return null;
     }
 

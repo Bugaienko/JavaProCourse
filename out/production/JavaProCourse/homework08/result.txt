@@ -9,3 +9,5 @@ rl.getFirst(): 6
 rl.getFirst(1): 7
 rl.set(1, val + 100): (old value) 7
 [6; 107; 8]
+[One; Two; Three]
+[One; Three]  f:Node{One} l:Node{Three}
