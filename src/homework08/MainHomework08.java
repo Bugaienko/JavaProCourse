@@ -6,7 +6,7 @@ package homework08;
  * @author Sergey Bugaenko
  * @version 24.11.22 - 25.11.22
  * @apiNote includes methods: addLast(value/values), addFirst, remove(value), removeAll(value), removeLast, removeFirst,
- * getFirst(by index), set(int index, T value)
+ * getFirst(by index), set(int index, T value), insert element by index and value;
  * implements Iterator;
  */
 public class MainHomework08 {
@@ -47,6 +47,8 @@ public class MainHomework08 {
         rls.addLast("For", "Five");
         System.out.println(rls);
         System.out.println(rls.getFirst(0));
+        rls.add(3, "Insert value");
+        System.out.println(rls + "  f:" + rls.getFirstNode() + " l:" + rls.getLastNode());
 
     }
 }

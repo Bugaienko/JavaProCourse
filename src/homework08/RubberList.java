@@ -7,6 +7,45 @@ public class RubberList<T> implements Iterable<T> {
     private Node<T> first;
     private Node<T> last;
 
+    public void add(T value){
+        addLast(value);
+    }
+
+    // Insert element by index and Value
+    public void add(int index, T value) {
+        if (index < size) {
+            if (index == 0) {
+                Node<T> temp = first;
+                first = new Node<>(value, null, temp);
+                temp.previous = first;
+            } else if (index == size -1) {
+                Node<T> temp = new Node<>(value, last.previous, last);
+                last.previous.next = temp;
+                last.previous = temp;
+
+            } else if (index <= size /2 ){
+                Node<T> cursor = first.next;
+                int count = 1;
+                while (cursor != null) {
+                    if (index == count) {
+                        Node<T> newNode = new Node<>(value, cursor.previous, cursor);
+                        cursor.previous.next = newNode;
+                        cursor.previous = newNode;
+                    }
+                    count++;
+                    cursor = cursor.next;
+                }
+            } else {
+                Node<T> cursor = last.previous;
+                int count = size - 2;
+                while (cursor != null){
+                    Node<T> newNode = new Node<>(value, cursor.previous, cursor);
+                    cursor.previous.next = newNode;
+                    cursor.previous = newNode;
+                }
+            }
+        }
+    }
     public void addLast(T value) {
         if (first == null) { // Наша List пустой. Добавляем ноду в позицию first
             first = new Node<>(value, null, null);
