@@ -11,23 +11,30 @@ public class MainLesson08 {
     public static void main(String[] args) {
 
         RubberList<Integer> rl = new RubberList<>();
-        rl.add(12);
-//        rl.remove(12);
-        rl.add(4);
-//        rl.add(5);
-//        rl.add(6);
-//        rl.firstAdd(0);
-        System.out.println(rl + " s:" + rl.size() );
-//        rl.removeLast();
-//        rl.remove(0);
-//        rl.remove(6);
-        rl.remove(4);
-        rl.add(8);
-        rl.removeLast();
-        rl.add(6);
-        rl.add(11);
-        System.out.println(rl + " s:" + rl.size() );
-        rl.remove(6);
-        System.out.println(rl + " s:" + rl.size() );
+        rl.addLast(9);
+//        rl.addFirst(1);
+        rl.addFirst(1);
+        rl.addLast(10);
+        rl.addLast(10);
+        rl.addLast(10);
+        System.out.println(rl + " s:" + rl.size());
+        rl.remove(10);
+        System.out.println("f:" + rl.getFirst() + " l:" + rl.getLast());
+
+        System.out.println(rl + " s:" + rl.size());
+        rl.removeAll(10);
+        System.out.println(rl + " s:" + rl.size());
+        rl.addFirst(0);
+        rl.addLast(11);
+
+        System.out.println("f:" + rl.getFirst() + " l:" + rl.getLast());
+        System.out.println(rl + " s:" + rl.size());
+
+        for (Integer val : rl){
+            System.out.print(val + " ");
+        }
+        System.out.println();
+
+
     }
 }

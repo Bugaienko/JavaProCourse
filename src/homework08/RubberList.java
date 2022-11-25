@@ -1,8 +1,8 @@
-package lesson08;
+package homework08;
 
 import java.util.Iterator;
 
-public class RubberList<T> implements Iterable<T> {
+public class RubberList<T> implements Iterable<T>{
     private int size;
     private Node<T> first;
     private Node<T> last;
@@ -20,6 +20,12 @@ public class RubberList<T> implements Iterable<T> {
             temp.next = last;
         }
         size++;
+    }
+
+    public void addLast(T...values){
+        for (T value: values){
+            addLast(value);
+        }
     }
 
     public void addFirst(T value) {
@@ -71,7 +77,6 @@ public class RubberList<T> implements Iterable<T> {
     private boolean deleteItem(Node<T> deleteMe) {
         // DeletedItem is first
         if (deleteMe == first) {
-            System.out.println("log-> First");
             if (size > 2) { // If we have 3 and more elements
                 deleteMe.next.previous = null;
                 first = deleteMe.next;
@@ -83,20 +88,16 @@ public class RubberList<T> implements Iterable<T> {
             }
             // DeletedItem is Last
         } else if (deleteMe == last) {
-            System.out.println("log-> Last");
             if (deleteMe.previous != first) { // If we have 3 and more elements
-                System.out.println("log-> If we have 3 and more elements");
                 last = last.previous;
                 last.next = null;
             } else {
                 // We have only 2 elements
-                System.out.println("log-> We have only 2 elements");
                 first.next = null;
                 last = null;
             }
             // DeletedItem is NOT first or last
         } else if (size == 3) { // We have just 3 elements und must delete index = 1
-            System.out.println("log-> 3 elements");
             first.next = last;
             last.previous = first;
 
@@ -125,6 +126,22 @@ public class RubberList<T> implements Iterable<T> {
                 Node<T> temp = last;
                 last = temp.previous;
                 last.next = null;
+            }
+            size--;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removeFirst(){
+        if (first != null){
+            if (size == 2) {
+                first = last;
+                first.previous =null;
+                last = null;
+            } else {
+                first = first.next;
+                first.previous = null;
             }
             size--;
             return true;
