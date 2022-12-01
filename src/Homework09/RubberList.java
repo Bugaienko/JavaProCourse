@@ -39,7 +39,7 @@ public class RubberList<T> implements Iterable<T> {
     }
 
     public T poll() {
-        if (isEmpty()){
+        if (isEmpty()) {
             return null;
         }
         T result = first.value;
@@ -126,7 +126,7 @@ public class RubberList<T> implements Iterable<T> {
 
 
     public T peekFirst() {
-        if (isEmpty()){
+        if (isEmpty()) {
             return null;
         }
         return getFirst();
@@ -134,15 +134,15 @@ public class RubberList<T> implements Iterable<T> {
 
 
     public T peekLast() {
-        if (isEmpty()){
+        if (isEmpty()) {
             return null;
         }
         return getLast();
     }
 
 
-    public T pollFirst(){
-        if (isEmpty()){
+    public T pollFirst() {
+        if (isEmpty()) {
             return null;
         }
         T res = getFirst();
@@ -152,7 +152,7 @@ public class RubberList<T> implements Iterable<T> {
 
 
     public T pollLast() {
-        if (isEmpty()){
+        if (isEmpty()) {
             return null;
         }
         T res = getLast();
@@ -220,8 +220,6 @@ public class RubberList<T> implements Iterable<T> {
     }
 
 
-
-
     //common methods
     // Insert element by index and Value
     public void add(int index, T value) {
@@ -251,17 +249,17 @@ public class RubberList<T> implements Iterable<T> {
                 Node<T> cursor = last.previous;
                 int count = size - 2;
                 while (cursor != null) {
-                    Node<T> newNode = new Node<>(value, cursor.previous, cursor);
-                    cursor.previous.next = newNode;
-                    cursor.previous = newNode;
+                    if (index == count) {
+                        Node<T> newNode = new Node<>(value, cursor.previous, cursor);
+                        cursor.previous.next = newNode;
+                        cursor.previous = newNode;
+                    }
+                    count--;
+                    cursor = cursor.previous;
                 }
             }
         }
     }
-
-
-
-
 
 
     //Удаляет, если есть, один элемент по значению (даже если совпадающих больше)
