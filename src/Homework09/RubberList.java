@@ -16,7 +16,7 @@ public class RubberList<T> implements Iterable<T> {
 
 
     public boolean add(T value) {
-        if (!isFull()) {
+        if (isFull()) {
             return false;
         }
         addLast(value);
@@ -66,6 +66,9 @@ public class RubberList<T> implements Iterable<T> {
     // Deque methods
 
     public void addFirst(T value) {
+        if (isFull()) {
+            throw new IllegalStateException("addFirst");
+        }
         if (first == null) {
             first = new Node<>(value, null, null);
         } else if (last == null) {
@@ -81,6 +84,9 @@ public class RubberList<T> implements Iterable<T> {
     }
 
     public void addLast(T value) {
+        if (isFull()) {
+            throw new IllegalStateException("addFirst");
+        }
         if (first == null) { // Наша List пустой. Добавляем ноду в позицию first
             first = new Node<>(value, null, null);
         } else if (last == null) { // У нас есть только first. Добавляем ноду в позицию last
@@ -120,7 +126,7 @@ public class RubberList<T> implements Iterable<T> {
 
 
     public T peekFirst() {
-        if (!isEmpty()){
+        if (isEmpty()){
             return null;
         }
         return getFirst();
@@ -128,7 +134,7 @@ public class RubberList<T> implements Iterable<T> {
 
 
     public T peekLast() {
-        if (!isEmpty()){
+        if (isEmpty()){
             return null;
         }
         return getLast();
@@ -136,7 +142,7 @@ public class RubberList<T> implements Iterable<T> {
 
 
     public T pollFirst(){
-        if (!isEmpty()){
+        if (isEmpty()){
             return null;
         }
         T res = getFirst();
@@ -146,7 +152,7 @@ public class RubberList<T> implements Iterable<T> {
 
 
     public T pollLast() {
-        if (!isEmpty()){
+        if (isEmpty()){
             return null;
         }
         T res = getLast();

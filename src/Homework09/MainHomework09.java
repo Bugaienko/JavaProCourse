@@ -8,7 +8,6 @@ import java.util.Random;
  *
  * @author Sergey Bugaenko
  * @version 28.11.22 - 01.12.22
- *
  */
 public class MainHomework09 {
     public static void main(String[] args) {
@@ -59,21 +58,53 @@ public class MainHomework09 {
 //                System.out.println(value);
                 iterator.remove();
             }
-            System.out.print (value + " ");
+            System.out.print(value + " ");
         }
         System.out.println();
 
         System.out.println(rl);
         RubberList<Integer> stack = new RubberList<>();
-        for (int i = 0; i < 7; i++){
+        for (int i = 0; i < 7; i++) {
             stack.add(new Random().nextInt(15));
         }
         System.out.println("Stack: " + stack);
-        for (int i = 0; i < 7; i++){
+        for (int i = 0; i < 7; i++) {
             System.out.print(stack.pop() + " ");
         }
         System.out.println();
         System.out.println("Stack: " + stack);
 
+        RubberList<Integer> queue = new RubberList<>();
+        for (int i = 0; i < 10; i++) {
+            queue.offer(new Random().nextInt(20));
+        }
+        System.out.println("queue: " + queue);
+        for (int i = 0; i < 10; i++) {
+            System.out.print("peel-> " + queue.peek() + "; ");
+            System.out.print("poll-> " + queue.poll() + "; ");
+        }
+        System.out.println();
+        System.out.println("queue: " + queue);
+
+        RubberList<String> deque = new RubberList<>();
+        for (int i = 0; i < 10; i++) {
+            if (i < 5) {
+                deque.addLast("el" + i);
+            } else {
+                deque.addFirst("el" + i);
+            }
+        }
+        System.out.println("deque: " + deque);
+        System.out.println("deque.peekFirst(): " + deque.peekFirst());
+        System.out.println("deque.peekLast(): " + deque.peekLast());
+        for (int i = 0; i < 10; i++) {
+            if (i < 5) {
+                System.out.print("pollLast-> " + deque.pollLast() + "; ");
+            } else {
+                System.out.print("pollFirst-> " + deque.pollFirst() + "; ");
+            }
+        }
+        System.out.println();
+        System.out.println("deque: " + deque);
     }
 }
