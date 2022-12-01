@@ -100,7 +100,7 @@ public class RubberList<T> implements Iterable<T> {
         }
     }
 
-    @Override
+
     public boolean offerFirst(T value) {
         if (isEmpty()) {
             return false;
@@ -109,7 +109,7 @@ public class RubberList<T> implements Iterable<T> {
         return true;
     }
 
-    @Override
+
     public boolean offerLast(T t) {
         if (isEmpty()) {
             return false;
@@ -118,7 +118,7 @@ public class RubberList<T> implements Iterable<T> {
         return true;
     }
 
-    @Override
+
     public T peekFirst() {
         if (!isEmpty()){
             return null;
@@ -126,7 +126,7 @@ public class RubberList<T> implements Iterable<T> {
         return getFirst();
     }
 
-    @Override
+
     public T peekLast() {
         if (!isEmpty()){
             return null;
@@ -134,7 +134,7 @@ public class RubberList<T> implements Iterable<T> {
         return getLast();
     }
 
-    @Override
+
     public T pollFirst(){
         if (!isEmpty()){
             return null;
@@ -144,7 +144,7 @@ public class RubberList<T> implements Iterable<T> {
         return res;
     }
 
-    @Override
+
     public T pollLast() {
         if (!isEmpty()){
             return null;
@@ -374,7 +374,6 @@ public class RubberList<T> implements Iterable<T> {
         return size;
     }
 
-    @Override
     public boolean isEmpty() {
         return size == 0;
     }
