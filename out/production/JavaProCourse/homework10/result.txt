@@ -26,26 +26,24 @@ s
 Имя + зп: (4)
 Выход: (9)
 1
+# Search by position menu
+Search by 1 word: (1)
+Search by 2 word: (2)
+Выход: (9)
+2
+Введите два слова для поиска в позиции через пробел: prog back
+Результат выборки по позиции prog + back
+5 {name='Tomas', position='Back-end prog', salary=1800, age=28}
+6 {name='Tomara', position='Back-end prog', salary=1700, age=23}
 # Search by age menu
 Min возраст: (1)
 Max возраст: (2)
 Between возраст (3)
 Выход: (9)
-1
-# Search by position menu
-Search by position: (1)
-Выход: (9)
-1
-Введите позицию для поиска: prog
-Результат выборки по позиции prog
-4 {name='Johanna', position='Front-end prog', salary=1700, age=25}
-5 {name='Tomas', position='Back-end prog', salary=1800, age=28}
-6 {name='Tomara', position='Back-end prog', salary=1700, age=23}
-Введите минимальный возраст:
-25
-Search min + employeeList
-Результат выборки minAge= 25
-4 {name='Johanna', position='Front-end prog', salary=1700, age=25}
+3
+Введите минимальный и максимальный возраст:
+25 28
+Результат выборки intervalAge {25 -> 28}
 5 {name='Tomas', position='Back-end prog', salary=1800, age=28}
 
 List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], x[exit]

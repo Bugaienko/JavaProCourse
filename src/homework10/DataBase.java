@@ -33,8 +33,10 @@ public class DataBase {
                 searchByPosition();
                 break;
             case 3:
+                searchBySalary();
                 break;
             case 4:
+                searchByName();
                 break;
             case 5:
                 searchMulti();
@@ -118,13 +120,11 @@ public class DataBase {
             case 1:
                 return searchByAge(searchByPosition());
             case 2:
-
-                break;
+                return searchBySalary(searchByPosition());
             case 3:
-
-                break;
+                return searchByAge(searchByName());
             case 4:
-                break;
+                return searchBySalary(searchByName());
             case 9:
                 System.out.println("Exit by multi search");
                 return null;
@@ -136,34 +136,6 @@ public class DataBase {
 
     // Search by Age section
     private List<Employee> searchByAge() {
-//    private void searchByAge() {
-        System.out.println("# Search by age menu");
-        System.out.println("Min возраст: (1)");
-        System.out.println("Max возраст: (2)");
-        System.out.println("Between возраст (3)");
-        System.out.println("Выход: (9)");
-        int choose = SCANNER.nextInt();
-        switch (choose) {
-            case 1:
-                return searchMinAge();
-
-            case 2:
-                return searchMaxAge();
-
-            case 3:
-                return searchIntervalAge();
-
-            case 9:
-                System.out.println("Exit by age search");
-                return null;
-            default:
-                System.out.println("Min-> 1; Max-> 2, Between-> 3,  Выход-> 9");
-        }
-        return null;
-    }
-
-    private List<Employee> searchByAge(List<Employee> employees) {
-//    private void searchByAge() {
         System.out.println("# Search by age menu");
         System.out.println("Min возраст: (1)");
         System.out.println("Max возраст: (2)");
@@ -184,7 +156,34 @@ public class DataBase {
                 System.out.println("Exit by age search");
                 return null;
             default:
-                System.out.println("Min-> 1; Max-> 2, Between-> 3,  Выход-> 9");
+                System.out.println("Min-> 1; Max-> 2, Interval-> 3,  Выход-> 9");
+        }
+        return null;
+    }
+
+    private List<Employee> searchByAge(List<Employee> employees) {
+//    private void searchByAge() {
+        System.out.println("# Search by age menu");
+        System.out.println("Min возраст: (1)");
+        System.out.println("Max возраст: (2)");
+        System.out.println("Interval возраст (3)");
+        System.out.println("Выход: (9)");
+        int choose = SCANNER.nextInt();
+        switch (choose) {
+            case 1:
+                return searchMinAge(employees);
+
+            case 2:
+                return searchMaxAge(employees);
+
+            case 3:
+                return searchIntervalAge(employees);
+
+            case 9:
+                System.out.println("Exit by age search");
+                return null;
+            default:
+                System.out.println("Min-> 1; Max-> 2, Interval-> 3,  Выход-> 9");
         }
         return null;
     }
@@ -237,6 +236,7 @@ public class DataBase {
         printListColumn(result);
         return result;
     }
+
     private List<Employee> searchMaxAge(List<Employee> employees) {
         System.out.println("Введите максимальный возраст: ");
         int maxAge = SCANNER.nextInt();
@@ -254,6 +254,7 @@ public class DataBase {
         printListColumn(result);
         return result;
     }
+
     private List<Employee> searchMinAge(List<Employee> employees) {
         System.out.println("Введите минимальный возраст: ");
         int minAge = SCANNER.nextInt();
@@ -319,14 +320,34 @@ public class DataBase {
         int choose = SCANNER.nextInt();
         switch (choose) {
             case 1:
-                return searchPositionContains();
+                return searchPositionContains(employees);
             case 2:
-                return searchPositionContainsTwoWords();
+                return searchPositionContainsTwoWords(employees);
             case 9:
                 System.out.println("Exit by position search");
                 return null;
             default:
                 System.out.println("Position-> 1; Exit-> 9");
+        }
+        return null;
+    }
+
+    private List<Employee> searchByPosition(List<Employee> employees) {
+        System.out.println("# Search by position menu");
+        System.out.println("Search by 1 word: (1)");
+        System.out.println("Search by 2 word: (2)");
+        System.out.println("Выход: (9)");
+        int choose = SCANNER.nextInt();
+        switch (choose) {
+            case 1:
+                return searchPositionContains(employees);
+            case 2:
+                return searchPositionContainsTwoWords(employees);
+            case 9:
+                System.out.println("Exit by position search");
+                return null;
+            default:
+                System.out.println("1 word-> 1; 2 word-> 2; Exit-> 9");
         }
         return null;
     }
@@ -339,6 +360,7 @@ public class DataBase {
         printListColumn(result);
         return result;
     }
+
     private List<Employee> searchPositionContains(List<Employee> employees) {
         System.out.print("Введите позицию для поиска: ");
         String positionSearch = SCANNER.next();
@@ -378,6 +400,7 @@ public class DataBase {
         }
         return result;
     }
+
     private List<Employee> searchPositionContains(String posSearch1, String posSearch2, List<Employee> employees) {
         List<Employee> result = new ArrayList<>();
         for (Employee employee : employees) {
@@ -386,6 +409,180 @@ public class DataBase {
                 result.add(employee);
             }
         }
+        return result;
+    }
+
+
+    // Search by Salary section
+    private List<Employee> searchBySalary() {
+//    private void searchByAge() {
+        System.out.println("# Search by age menu");
+        System.out.println("Min зп: (1)");
+        System.out.println("Max зп: (2)");
+        System.out.println("Interval зп (3)");
+        System.out.println("Выход: (9)");
+        int choose = SCANNER.nextInt();
+        switch (choose) {
+            case 1:
+                return searchMinSalary(employees);
+
+            case 2:
+                return searchMaxSalary(employees);
+
+            case 3:
+                return searchIntervalSalary(employees);
+            case 9:
+                System.out.println("Exit by salary search");
+                return null;
+            default:
+                System.out.println("Min-> 1; Max-> 2, Interval-> 3,  Выход-> 9");
+        }
+        return null;
+    }
+
+    private List<Employee> searchBySalary(List<Employee> employees) {
+//    private void searchByAge() {
+        System.out.println("# Search by salary menu");
+        System.out.println("Min зп: (1)");
+        System.out.println("Max зп: (2)");
+        System.out.println("Interval зп (3)");
+        System.out.println("Выход: (9)");
+        int choose = SCANNER.nextInt();
+        switch (choose) {
+            case 1:
+                return searchMinSalary(employees);
+
+            case 2:
+                return searchMaxSalary(employees);
+
+            case 3:
+                return searchIntervalSalary(employees);
+            case 9:
+                System.out.println("Exit by salary search");
+                return null;
+            default:
+                System.out.println("Min-> 1; Max-> 2, Interval-> 3,  Выход-> 9");
+        }
+        return null;
+    }
+
+    private List<Employee> searchMinSalary(List<Employee> employees) {
+        System.out.println("Введите минимальную зп: ");
+        int minSalary = SCANNER.nextInt();
+        List<Employee> result = searchMinSalary(minSalary, employees);
+        System.out.println("Результат выборки minSalary= " + minSalary);
+        printListColumn(result);
+        return result;
+    }
+
+    private List<Employee> searchMinSalary(int minSalary, List<Employee> employeeList) {
+//        System.out.println("Search min + employeeList");
+        List<Employee> result = new ArrayList<>();
+        for (Employee employee : employeeList) {
+            if (employee.getSalary() >= minSalary) {
+                result.add(employee);
+            }
+        }
+        return result;
+    }
+
+    private List<Employee> searchMaxSalary(List<Employee> employees) {
+        System.out.println("Введите максимальную зп: ");
+        int maxSalary = SCANNER.nextInt();
+        List<Employee> result = searchMaxSalary(maxSalary, employees);
+        System.out.println("Результат выборки maxSalary= " + maxSalary);
+        printListColumn(result);
+        return result;
+    }
+
+    private List<Employee> searchMaxSalary(int maxSalary, List<Employee> employeeList) {
+//        System.out.println("Search min + employeeList");
+        List<Employee> result = new ArrayList<>();
+        for (Employee employee : employeeList) {
+            if (employee.getSalary() <= maxSalary) {
+                result.add(employee);
+            }
+        }
+        return result;
+    }
+
+    private List<Employee> searchIntervalSalary(List<Employee> employees) {
+        System.out.println("Введите минимальную и максимальную зп: ");
+        int minSal = SCANNER.nextInt();
+        int maxSal = SCANNER.nextInt();
+        List<Employee> result = searchIntervalSalary(minSal, maxSal, employees);
+        System.out.println("Результат выборки intervalSalary {" + minSal + " -> " + maxSal + "}");
+        printListColumn(result);
+        return result;
+    }
+
+    private List<Employee> searchIntervalSalary(int minSal, int maxSal, List<Employee> employees) {
+        List<Employee> result = new ArrayList<>();
+        for (Employee employee : employees) {
+            if (employee.getSalary() >= minSal && employee.getSalary() <= maxSal) {
+                result.add(employee);
+            }
+        }
+        return result;
+    }
+
+    // Search by Name section
+    private List<Employee> searchByName() {
+        System.out.println("# Search by name menu");
+        System.out.println("Search by 1 word: (1)");
+        System.out.println("Search by 2 word: (2)");
+        System.out.println("Выход: (9)");
+        int choose = SCANNER.nextInt();
+        switch (choose) {
+            case 1:
+                return searchNameContains(employees);
+            case 2:
+                return searchNameContainsTwoWords(employees);
+            case 9:
+                System.out.println("Exit by name search");
+                return null;
+            default:
+                System.out.println("1 word-> 1; 2 word > 2 Exit-> 9");
+        }
+        return null;
+    }
+
+    private List<Employee> searchNameContains(List<Employee> employees) {
+        System.out.print("Введите имя для поиска: ");
+        String nameSearch = SCANNER.next();
+        List<Employee> result = searchNameContains(nameSearch, employees);
+        System.out.println("Результат выборки по имени " + nameSearch);
+        printListColumn(result);
+        return result;
+    }
+
+    private List<Employee> searchNameContains(String nameSearch, List<Employee> employees) {
+        List<Employee> result = new ArrayList<>();
+        for (Employee employee : employees) {
+            if (employee.getName().toLowerCase().contains(nameSearch.toLowerCase().trim())) {
+                result.add(employee);
+            }
+        }
+        return result;
+    }
+
+    private List<Employee> searchNameContains(String nameSearch1, String nameSearch2, List<Employee> employees) {
+        List<Employee> result = new ArrayList<>();
+        for (Employee employee : employees) {
+            if (employee.getName().toLowerCase().contains(nameSearch1.toLowerCase().trim()) && employee.getName().toLowerCase().contains(nameSearch2.toLowerCase().trim())) {
+                result.add(employee);
+            }
+        }
+        return result;
+    }
+
+    private List<Employee> searchNameContainsTwoWords(List<Employee> employees) {
+        System.out.print("Введите два слова для поиска в имени через пробел: ");
+        String nameSearch1 = SCANNER.next();
+        String nameSearch2 = SCANNER.next();
+        List<Employee> result = searchNameContains(nameSearch1, nameSearch2, employees);
+        System.out.println("Результат выборки по имени " + nameSearch1 + " + " + nameSearch2);
+        printListColumn(result);
         return result;
     }
 }
