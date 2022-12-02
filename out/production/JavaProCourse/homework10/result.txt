@@ -1,0 +1,52 @@
+List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], x[exit]
+# Main menu
+r
+1 {name='John', position='Boss', salary=2000, age=45}
+2 {name='Gina', position='Assistant', salary=950, age=21}
+3 {name='Svetlana', position='CafeMaker', salary=930, age=20}
+4 {name='Johanna', position='Front-end prog', salary=1700, age=25}
+5 {name='Tomas', position='Back-end prog', salary=1800, age=28}
+6 {name='Tomara', position='Back-end prog', salary=1700, age=23}
+
+List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], x[exit]
+# Main menu
+s
+# Search menu
+Выборки по возрасту: (1)
+Поиск по должности: (2)
+Выборки по зп: (3)
+Поиск по имени: (4)
+Поиск по нескольким условиям: (5)
+Выход: (9)
+5
+# Search combo menu
+Должность + возраст: (1)
+Должность + зп: (2)
+Имя + возраст: (3)
+Имя + зп: (4)
+Выход: (9)
+1
+# Search by age menu
+Min возраст: (1)
+Max возраст: (2)
+Between возраст (3)
+Выход: (9)
+1
+# Search by position menu
+Search by position: (1)
+Выход: (9)
+1
+Введите позицию для поиска: prog
+Результат выборки по позиции prog
+4 {name='Johanna', position='Front-end prog', salary=1700, age=25}
+5 {name='Tomas', position='Back-end prog', salary=1800, age=28}
+6 {name='Tomara', position='Back-end prog', salary=1700, age=23}
+Введите минимальный возраст:
+25
+Search min + employeeList
+Результат выборки minAge= 25
+4 {name='Johanna', position='Front-end prog', salary=1700, age=25}
+5 {name='Tomas', position='Back-end prog', salary=1800, age=28}
+
+List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], x[exit]
+# Main menu

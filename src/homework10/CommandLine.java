@@ -9,7 +9,9 @@ public class CommandLine {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.print("# ");
+            System.out.println();
+            System.out.println("List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], x[exit]");
+            System.out.println("# Main menu");
             String cmd = scanner.next();
             switch (cmd) {
                 case "c":
@@ -31,7 +33,7 @@ public class CommandLine {
                     db.search();
                     break;
                 default:
-                    System.out.println("List of command: c[reate], r[ead], u[pdate], d[elete], x[exit]");
+                    System.out.println("List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], x[exit]");
 
             }
         }

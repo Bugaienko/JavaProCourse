@@ -1,0 +1,50 @@
+List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], x[exit]
+# Main menu
+r
+1 {name='John', position='Boss', salary=2000, age=45}
+2 {name='Gina', position='Assistant', salary=950, age=21}
+3 {name='Svetlana', position='CafeMaker', salary=930, age=20}
+4 {name='Johanna', position='Front-end prog', salary=1700, age=25}
+5 {name='Tomas', position='Back-end prog', salary=1800, age=28}
+6 {name='Tomara', position='Back-end prog', salary=1700, age=23}
+
+List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], x[exit]
+# Main menu
+s
+# Search menu
+Выборки по возрасту: (1)
+Поиск по должности: (2)
+Выборки по зп: (3)
+Поиск по имени: (4)
+Поиск по нескольким условиям: (5)
+Выход: (9)
+5
+# Search combo menu
+Должность + возраст: (1)
+Должность + зп: (2)
+Имя + возраст: (3)
+Имя + зп: (4)
+Выход: (9)
+1
+# Search by position menu
+Search by 1 word: (1)
+Search by 2 word: (2)
+Выход: (9)
+2
+Введите два слова для поиска в позиции через пробел: prog back
+Результат выборки по позиции prog + back
+5 {name='Tomas', position='Back-end prog', salary=1800, age=28}
+6 {name='Tomara', position='Back-end prog', salary=1700, age=23}
+# Search by age menu
+Min возраст: (1)
+Max возраст: (2)
+Between возраст (3)
+Выход: (9)
+3
+Введите минимальный и максимальный возраст:
+25 28
+Результат выборки intervalAge {25 -> 28}
+5 {name='Tomas', position='Back-end prog', salary=1800, age=28}
+
+List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], x[exit]
+# Main menu
