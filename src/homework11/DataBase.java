@@ -1,20 +1,27 @@
-package homework10;
+package homework11;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+
+import java.util.*;
 
 public class DataBase {
-    private final List<Employee> employees;
     private final Scanner SCANNER = new Scanner(System.in);
+    private final List<Employee> employees;
+    private final Map<Integer, Employee> indexMap;
 
-    public DataBase() {
+    public DataBase(List<Employee> employees) {
         this.employees = new ArrayList<>();
+        this.employees.addAll(employees);
+        this.indexMap = new HashMap<>();
+        for (Employee employee : this.employees) {
+            indexMap.put(employee.getId(), employee);
+        }
+
+
     }
 
-    public void init(List<Employee> employees) {
-        this.employees.addAll(employees);
-    }
+//    public void init(List<Employee> employees) {
+//        this.employees.addAll(employees);
+//    }
 
     public void search() {
         System.out.println("# Search menu");
@@ -23,6 +30,7 @@ public class DataBase {
         System.out.println("Выборки по зп: (3)");
         System.out.println("Поиск по имени: (4)");
         System.out.println("Поиск по нескольким условиям: (5)");
+        System.out.println("Тест random List: (6)");
         System.out.println("Выход: (9)");
         int choose = SCANNER.nextInt();
         switch (choose) {
@@ -41,6 +49,9 @@ public class DataBase {
             case 5:
                 searchMulti();
                 break;
+            case 6:
+                TestMethodsSpeed.testRandomList();
+                break;
             case 9:
                 System.out.println("Exit ended");
                 return;
@@ -49,41 +60,94 @@ public class DataBase {
         }
     }
 
+//    public void testRandomList() {
+//        int size = 1_500_000;
+//        List<Employee> testList = DbInit.createBigRandomList(size);
+////        DataUtil.printListColumn(testList);
+//        Map<Integer, Employee> map = new HashMap<>();
+//        for (Employee employee : testList) {
+//            map.put(employee.getId(), employee);
+//        }
+//        int arrSize = 10_000;
+//        int[] arr = new int[arrSize];
+//        for (int i = 0; i < arr.length; i++) {
+//            arr[i] = new Random().nextInt(size);
+//        }
+//        System.out.println("Тест HashMap vs ArrayList - поиск по индексу");
+//        System.out.println("ArrayList size: " + size + "; Кол-во индексов для поиска: " + arrSize);
+//        testByIdMapUsing(testList, map, arr);
+//        testByIdEnumeration(testList, map, arr);
+//
+//    }
+//
+//    private void testByIdMapUsing(List<Employee> list, Map<Integer, Employee> map, int[] arr) {
+//        //TODO - создать карту. Реализовать поиск
+////        return indexMap.get(id);
+//        long startTime = System.currentTimeMillis();
+//        for (int i = 0; i < arr.length; i++) {
+//            Employee temp = map.get(arr[i]);
+////            System.out.print(map.get(arr[i]));
+//        }
+////        System.out.println();
+//        System.out.println("MAP time (ms): " + (System.currentTimeMillis() - startTime));
+//    }
+
+    private void testByIdEnumeration(List<Employee> list, Map<Integer, Employee> map, int[] arr) {
+        long startTime = System.currentTimeMillis();
+        for (int j = 0; j < arr.length; j++) {
+            for (Employee employee : list) {
+                if (employee.getId() == j) {
+                    Employee temp = employee;
+//                    System.out.print(employee);
+                }
+            }
+        }
+//        System.out.println();
+        System.out.println("ArrayList time (ms): " + (System.currentTimeMillis() - startTime));
+    }
+
     public void create() {
-        System.out.println("create: ");
-        String name = SCANNER.next();
-        String position = SCANNER.next();
-        int salary = SCANNER.nextInt();
-        int age = SCANNER.nextInt();
-        employees.add(new Employee(name, position, salary, age));
+        Employee employee = DataUtil.createEmployee("Create new Employee");
+        employees.add(employee);
+        indexMap.put(employee.getId(), employee);
     }
 
     public void read() {
-        for (Employee employee : employees) {
-            System.out.println(employee);
-        }
+        DataUtil.printListColumn(employees);
     }
 
     public void update() {
-        System.out.println("find by id: ");
-        int searchId = SCANNER.nextInt();
+        int searchId = DataUtil.getInt("find by id: ");
         Employee employee = findById(searchId);
         if (employee != null) {
-            System.out.println("Update: (position, salary, age ");
-            String position = SCANNER.next();
-            int salary = SCANNER.nextInt();
-            int age = SCANNER.nextInt();
-            employee.update(position, salary, age);
+            Employee tmpEmpl = DataUtil.createEmployeePart("Update: (position, salary, age ");
+
+//            System.out.println("Update: (position, salary, age ");
+//            String position = SCANNER.next();
+//            int salary = SCANNER.nextInt();
+//            int age = SCANNER.nextInt();
+
+            employee.update(tmpEmpl.getPosition(), tmpEmpl.getSalary(), tmpEmpl.getAge());
             System.out.println("Updated " + employee);
         }
     }
 
+    private Employee findById(int id) {
+        return indexMap.get(id);
+//        for (Employee employee : employees) {
+//            if (employee.getId() == id) {
+//                return employee;
+//            }
+//        }
+//        return null;
+    }
+
     public void delete() {
-        System.out.println("Delete by id: ");
-        int searchId = SCANNER.nextInt();
+        int searchId = DataUtil.getInt("Delete by id: ");
         Employee employee = findById(searchId);
         if (employee != null) {
             employees.remove(employee);
+            indexMap.remove(employee.getId());
             System.out.println("Deleted " + employee);
         }
     }
@@ -98,14 +162,6 @@ public class DataBase {
         return null;
     }
 
-    private Employee findById(int id) {
-        for (Employee employee : employees) {
-            if (employee.getId() == id) {
-                return employee;
-            }
-        }
-        return null;
-    }
 
     // MultiSearch section
     private List<Employee> searchMulti() {
@@ -194,7 +250,7 @@ public class DataBase {
         int maxAge = SCANNER.nextInt();
         List<Employee> result = searchIntervalAge(minAge, maxAge, employees);
         System.out.println("Результат выборки intervalAge {" + minAge + " -> " + maxAge + "}");
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
@@ -204,7 +260,7 @@ public class DataBase {
         int maxAge = SCANNER.nextInt();
         List<Employee> result = searchIntervalAge(minAge, maxAge, employees);
         System.out.println("Результат выборки intervalAge {" + minAge + " -> " + maxAge + "}");
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
@@ -218,14 +274,24 @@ public class DataBase {
         return result;
     }
 
+//    private List<Employee> searchIntervalAge(int minAge, int maxAge, List<Employee> employees) {
+//        List<Employee> result = new ArrayList<>();
+//        for (Employee employee : employees) {
+//            if (employee.getAge() >= minAge && employee.getAge() <= maxAge) {
+//                result.add(employee);
+//            }
+//        }
+//        return result;
+//    }
 
     private List<Employee> searchMaxAge() {
-        System.out.println("Введите максимальный возраст: ");
-        int maxAge = SCANNER.nextInt();
-        List<Employee> result = searchMaxAge(maxAge);
-        System.out.println("Результат выборки maxAge= " + maxAge);
-        printListColumn(result);
-        return result;
+        return searchMaxAge(employees);
+//        System.out.println("Введите максимальный возраст: ");
+//        int maxAge = SCANNER.nextInt();
+//        List<Employee> result = searchMaxAge(maxAge);
+//        System.out.println("Результат выборки maxAge= " + maxAge);
+//        DataUtil.printListColumn(result);
+//        return result;
     }
 
     private List<Employee> searchMaxAge(List<Employee> employees) {
@@ -233,33 +299,33 @@ public class DataBase {
         int maxAge = SCANNER.nextInt();
         List<Employee> result = searchMaxAge(maxAge, employees);
         System.out.println("Результат выборки maxAge= " + maxAge);
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
     private List<Employee> searchMinAge() {
-        System.out.println("Введите минимальный возраст: ");
-        int minAge = SCANNER.nextInt();
-        List<Employee> result = searchMinAge(minAge, employees);
-        System.out.println("Результат выборки minAge= " + minAge);
-        printListColumn(result);
-        return result;
+        return searchMinAge(employees);
+//        System.out.println("Введите минимальный возраст: ");
+//        int minAge = SCANNER.nextInt();
+//        List<Employee> result = searchMinAge(minAge, employees);
+//        System.out.println("Результат выборки minAge= " + minAge);
+//        DataUtil.printListColumn(result);
+//        return result;
     }
 
     private List<Employee> searchMinAge(List<Employee> employees) {
-        System.out.println("Введите минимальный возраст: ");
-        int minAge = SCANNER.nextInt();
+        int minAge = DataUtil.getInt("Введите минимальный возраст: ");
         List<Employee> result = searchMinAge(minAge, employees);
         System.out.println("Результат выборки minAge= " + minAge);
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
-    public void printListColumn(List<Employee> employees) {
-        for (Employee employee : employees) {
-            System.out.println(employee);
-        }
-    }
+//    public void printListColumn(List<Employee> employees) {
+//        for (Employee employee : employees) {
+//            System.out.println(employee);
+//        }
+//    }
 
     private List<Employee> searchMinAge(int minAge, List<Employee> employeeList) {
         System.out.println("Search min + employeeList");
@@ -344,20 +410,18 @@ public class DataBase {
     }
 
     private List<Employee> searchPositionContains() {
-        System.out.print("Введите позицию для поиска: ");
-        String positionSearch = SCANNER.next();
+        String positionSearch = DataUtil.getString("Введите позицию для поиска: ");
         List<Employee> result = searchPositionContains(positionSearch, employees);
         System.out.println("Результат выборки по позиции " + positionSearch);
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
     private List<Employee> searchPositionContains(List<Employee> employees) {
-        System.out.print("Введите позицию для поиска: ");
-        String positionSearch = SCANNER.next();
+        String positionSearch = DataUtil.getString("Введите позицию для поиска: ");
         List<Employee> result = searchPositionContains(positionSearch, employees);
         System.out.println("Результат выборки по позиции " + positionSearch);
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
@@ -367,7 +431,7 @@ public class DataBase {
         String positionSearch2 = SCANNER.next();
         List<Employee> result = searchPositionContains(positionSearch1, positionSearch2, employees);
         System.out.println("Результат выборки по позиции " + positionSearch1 + " + " + positionSearch2);
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
@@ -377,7 +441,7 @@ public class DataBase {
         String positionSearch2 = SCANNER.next();
         List<Employee> result = searchPositionContains(positionSearch1, positionSearch2, employees);
         System.out.println("Результат выборки по позиции " + positionSearch1 + " + " + positionSearch2);
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
@@ -385,7 +449,6 @@ public class DataBase {
         List<Employee> result = new ArrayList<>();
         for (Employee employee : employees) {
             if (employee.getPosition().toLowerCase().contains(posSearch.toLowerCase().trim())) {
-//                System.out.println(employee + " содержит " + posSearch);
                 result.add(employee);
             }
         }
@@ -396,7 +459,6 @@ public class DataBase {
         List<Employee> result = new ArrayList<>();
         for (Employee employee : employees) {
             if (employee.getPosition().toLowerCase().contains(posSearch1.toLowerCase().trim()) && employee.getPosition().toLowerCase().contains(posSearch2.toLowerCase().trim())) {
-//                System.out.println(employee + " содержит " + posSearch);
                 result.add(employee);
             }
         }
@@ -458,11 +520,10 @@ public class DataBase {
     }
 
     private List<Employee> searchMinSalary(List<Employee> employees) {
-        System.out.println("Введите минимальную зп: ");
-        int minSalary = SCANNER.nextInt();
+        int minSalary = DataUtil.getInt("Введите минимальную зп: ");
         List<Employee> result = searchMinSalary(minSalary, employees);
         System.out.println("Результат выборки minSalary= " + minSalary);
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
@@ -478,11 +539,10 @@ public class DataBase {
     }
 
     private List<Employee> searchMaxSalary(List<Employee> employees) {
-        System.out.println("Введите максимальную зп: ");
-        int maxSalary = SCANNER.nextInt();
+        int maxSalary = DataUtil.getInt("Введите максимальную зп: ");
         List<Employee> result = searchMaxSalary(maxSalary, employees);
         System.out.println("Результат выборки maxSalary= " + maxSalary);
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
@@ -503,7 +563,7 @@ public class DataBase {
         int maxSal = SCANNER.nextInt();
         List<Employee> result = searchIntervalSalary(minSal, maxSal, employees);
         System.out.println("Результат выборки intervalSalary {" + minSal + " -> " + maxSal + "}");
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
@@ -538,12 +598,24 @@ public class DataBase {
         return null;
     }
 
+    public List<Employee> find() {
+        String searchName = DataUtil.getString("Find by Name: ");
+        List<Employee> foundList = new ArrayList<>();
+        for (Employee employee : employees) {
+//            if (employee.getName().equalsIgnoreCase(searchName)){
+            if (employee.getName().toLowerCase().contains(searchName.toLowerCase())) {
+                foundList.add(employee);
+            }
+        }
+        DataUtil.printListColumn(foundList);
+        return foundList;
+    }
+
     private List<Employee> searchNameContains(List<Employee> employees) {
-        System.out.print("Введите имя для поиска: ");
-        String nameSearch = SCANNER.next();
+        String nameSearch = DataUtil.getString("Введите имя для поиска: ");
         List<Employee> result = searchNameContains(nameSearch, employees);
         System.out.println("Результат выборки по имени " + nameSearch);
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 
@@ -573,7 +645,7 @@ public class DataBase {
         String nameSearch2 = SCANNER.next();
         List<Employee> result = searchNameContains(nameSearch1, nameSearch2, employees);
         System.out.println("Результат выборки по имени " + nameSearch1 + " + " + nameSearch2);
-        printListColumn(result);
+        DataUtil.printListColumn(result);
         return result;
     }
 }

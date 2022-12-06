@@ -1,4 +1,4 @@
-package Homework09;
+package homework09;
 
 import java.util.Iterator;
 import java.util.Random;

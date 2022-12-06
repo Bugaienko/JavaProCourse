@@ -1,16 +1,16 @@
-package homework10;
+package homework11;
 
 import java.util.Scanner;
 
 public class CommandLine {
     public void exec() {
-        DataBase db = new DataBase();
-        db.init(DbInit.init());
+        DataBase db = new DataBase(DbInit.init());
+//        db.init(DbInit.init());
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println();
-            System.out.println("List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], x[exit]");
+            System.out.println("List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], f[ind], [t]est, x[exit]");
             System.out.println("# Main menu");
             String cmd = scanner.next();
             switch (cmd.toLowerCase().charAt(0)) {
@@ -32,8 +32,15 @@ public class CommandLine {
                 case 's':
                     db.search();
                     break;
+                case 'f':
+                    db.find();
+                    break;
+
+                case 't':
+                    TestMethodsSpeed.testRandomList();
+                    break;
                 default:
-                    System.out.println("List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], x[exit]");
+                    System.out.println("List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], f[ind], [t]est, x[exit]");
 
             }
         }

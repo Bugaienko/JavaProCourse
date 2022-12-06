@@ -1,4 +1,4 @@
-package Homework09;
+package homework09;
 
 public class StringBuilderVsString {
     public static void main(String[] args) {

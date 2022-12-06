@@ -1,9 +1,7 @@
-package Homework09;
+package homework09;
 
-import java.util.Deque;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Queue;
 
 public class RubberList<T> implements Iterable<T> {
     private int size;
