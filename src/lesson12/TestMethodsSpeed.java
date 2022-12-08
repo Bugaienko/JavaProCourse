@@ -1,4 +1,4 @@
-package homework11;
+package lesson12;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +26,6 @@ public class TestMethodsSpeed {
         int size = 1_500_000;
         size = DataUtil.getInt("Задайте длину генерируемого списка сотрудников");
         testList = DbInit.createBigRandomList(size);
-//        DataUtil.printListColumn(testList);
         map = new HashMap<>();
         for (Employee employee : testList) {
             map.put(employee.getId(), employee);
@@ -46,13 +45,10 @@ public class TestMethodsSpeed {
 
     private static void testByIdMapUsing(int[] arr) {
         //TODO - создать карту. Реализовать поиск
-//        return indexMap.get(id);
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < arr.length; i++) {
             Employee temp = map.get(arr[i]);
-//            System.out.print(map.get(arr[i]));
         }
-//        System.out.println();
         System.out.println("MAP time (ms): " + (System.currentTimeMillis() - startTime));
     }
 
@@ -63,7 +59,6 @@ public class TestMethodsSpeed {
                 if (employee.getId() == j) {
                     Employee temp = employee;
                     break;
-//                    System.out.print(employee);
                 }
             }
         }
