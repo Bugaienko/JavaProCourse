@@ -12,6 +12,7 @@ public class DataBase {
         this.employees = new ArrayList<>();
         this.employees.addAll(employees);
         this.indexMap = new HashMap<>();
+//        this.indexMap = new TreeMap<>();
         for (Employee employee : this.employees) {
             indexMap.put(employee.getId(), employee);
         }
@@ -598,5 +599,25 @@ public class DataBase {
         System.out.println("Результат выборки по имени " + nameSearch1 + " + " + nameSearch2);
         DataUtil.printListColumn(result);
         return result;
+    }
+
+    public void positions() {
+        List<String> positions = new  ArrayList<>();
+        for (Employee employee: employees) {
+            positions.add(employee.getPosition());
+        }
+        System.out.println(new HashSet<>(positions));
+    }
+
+    public void sorting() {
+        Map<Integer, Employee> sortedMap = new TreeMap<>();
+        for (Employee employee : this.employees) {
+            sortedMap.put(employee.getSalary(), employee);
+        }
+        List<Employee> sortedList = new ArrayList<>();
+        for (Integer key: sortedMap.keySet()) {
+            sortedList.add(sortedMap.get(key));
+        }
+        DataUtil.printListColumn(sortedList);
     }
 }

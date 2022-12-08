@@ -55,6 +55,5 @@ public class DataUtil {
             System.out.println("Error! Position not found");
             return null;
         }
-
     }
 }

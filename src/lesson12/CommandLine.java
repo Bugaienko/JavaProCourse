@@ -11,8 +11,8 @@ public class CommandLine {
 
         while (true) {
             System.out.println();
-            System.out.println("List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], f[ind], [t]est, x[exit]");
-            System.out.println("# Main menu");
+            System.out.println("List of command: c[reate], r[ead], u[pdate], d[elete], ");
+            System.out.println("s[o]rt, s[earch menu], f[ind], [t]est, x[exit]");            System.out.println("# Main menu");
             String cmd = scanner.next();
             switch (cmd.toLowerCase().charAt(0)) {
                 case 'c':
@@ -36,12 +36,19 @@ public class CommandLine {
                 case 'f':
                     db.find();
                     break;
+                case 'p':
+                    db.positions();
+                    break;
+                case 'o':
+                    db.sorting();
+                    break;
 
                 case 't':
                     TestMethodsSpeed.testRandomList();
                     break;
                 default:
-                    System.out.println("List of command: c[reate], r[ead], u[pdate], d[elete], s[earch menu], f[ind], [t]est, x[exit]");
+                    System.out.println("List of command: c[reate], r[ead], u[pdate], d[elete], ");
+                    System.out.println("s[o]rt, s[earch menu], f[ind], [t]est, x[exit]");
 
             }
         }
