@@ -26,6 +26,6 @@ public class MainLesson12 {
         Collections.sort(strings);
         System.out.println(strings);
 
-        
+
     }
 }
