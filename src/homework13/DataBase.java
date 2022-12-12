@@ -1,4 +1,4 @@
-package homework12;
+package homework13;
 
 
 import java.util.*;
@@ -619,7 +619,9 @@ public class DataBase {
                 comparator = new ComparatorName();
                 break;
             case "p":
+                System.out.println("POs");
                 comparator = new ComparatorPosition();
+                break;
             case "s":
                 comparator = new ComparatorSalary();
                 break;
@@ -632,7 +634,7 @@ public class DataBase {
         }
         if (comparator != null) {
             List<Employee> sortedList = new ArrayList<>(employees);
-            sortedList.sort(comparator);
+            sortedList.sort(comparator.thenComparing(new ComparatorName()));
             DataUtil.printListColumn(sortedList);
         }
 
