@@ -1,5 +1,7 @@
 package homework14Extra;
 
+import lesson14.HashTable;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -59,15 +61,6 @@ public class MainHomework14Extra extends JFrame {
                     g.fillRect(x, y, dx, dy);
                 }
             }
-
-
-//            g.setColor(Color.red);
-//            g.drawLine(10, 10, 100, 100);
-//            g.setColor(Color.blue);
-//            g.drawRect(20, 20, 100, 50);
-//            g.setColor(Color.green);
-//            g.drawOval(130, 35, 150, 100);
-//            g.fillOval(300, 30, 120, 60);
         }
     }
 }

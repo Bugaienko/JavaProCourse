@@ -1,8 +1,7 @@
-package lesson14;
+package homework14;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
 import java.util.Random;
 
 public class HashTable<K, V> extends JFrame {
@@ -13,7 +12,7 @@ public class HashTable<K, V> extends JFrame {
     private Random random = new Random();
 
     public HashTable() {
-        setTitle("Hello Swing");
+        setTitle("HashMap work scheme");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1200, 600);
         setLocationRelativeTo(null);
@@ -66,6 +65,39 @@ public class HashTable<K, V> extends JFrame {
         return null;
     }
 
+    public V remove(K key) {
+        int hash = key.hashCode();
+        int idx = hash & (capacity - 1);
+        if (buckets[idx] == null) {
+            return null;
+        }
+        Entry<K, V> pointer = buckets[idx];
+        if (pointer.key.equals(key)) {
+            V result = pointer.value;
+            if (pointer.next == null) {
+                buckets[idx] = null;
+            } else {
+                buckets[idx] = buckets[idx].next;
+            }
+            return result;
+        }
+        Entry<K, V> next = pointer.next;
+        while (next != null) {
+            if (next.key.equals(key)) {
+                V result = next.value;
+                if (next.next == null) {
+                    pointer.next = null;
+                } else {
+                    pointer.next = next.next;
+                }
+                return result;
+            }
+            pointer = pointer.next;
+            next = next.next;
+        }
+        return null;
+    }
+
     private class Entry<K, V> {
         private int hash;
         private K key;
@@ -103,8 +135,6 @@ public class HashTable<K, V> extends JFrame {
         @Override
         public void paint(Graphics g) {
             super.paint(g);
-
-            // рисуем что хотим
             for (int i = 0; i < buckets.length; i++) {
                 int link = 0;
                 int x = 10 + i * 70;
@@ -113,34 +143,43 @@ public class HashTable<K, V> extends JFrame {
                 int dy = 65;
                 if (buckets[i] != null) {
                     g.setColor(Color.cyan);
+                    Rectangle rect1 = new Rectangle(x, y, dx, dy);
                     g.fillRect(x, y, dx, dy);
+                    g.setColor(Color.black);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(i);
+                    sb.append(" ");
+                    sb.append((String) buckets[i].key);
+                    g.drawString(sb.toString(), x + 5, y + 25);
+                    g.drawString((String) buckets[i].value, x + 5, y + 40);
+                    String next = (buckets[i].next == null) ? "n-> null" : "n-> " + buckets[i].next.key;
+                    g.drawString(next, x + 5, y + 55);
                     Entry<K, V> pointer = buckets[i];
                     while (pointer.next != null) {
-                        y = 20 + 65 + dy * link + 10 * (link + 1) ;
+                        y = 20 + 65 + dy * link + 10 * (link + 1);
                         link++;
+                        g.setColor(Color.cyan);
                         g.fillRect(x, y, dx, dy);
+                        g.setColor(Color.black);
+                        StringBuilder sb1 = new StringBuilder();
+                        sb1.append(i);
+                        sb1.append(" ");
+                        sb1.append((String) pointer.next.key);
+                        g.drawString(sb1.toString(), x + 5, y + 25);
+                        g.drawString((String) pointer.next.value, x + 5, y + 40);
+                        String next2 = (pointer.next.next == null) ? "n-> null" : "n-> " + pointer.next.next.key;
+                        g.drawString(next2, x + 5, y + 55);
                         pointer = pointer.next;
                     }
                 } else {
                     g.setColor(Color.gray);
                     g.drawRect(x, y, dx, dy);
-
+                    g.setColor(Color.black);
+                    StringBuilder sb2 = new StringBuilder();
+                    sb2.append(i);
+                    g.drawString(sb2.toString(), x + 5, y + 25);
                 }
             }
-//            g.fillOval(10, 10, 100, 100);
-
-//            for (int i = 0; i < 10; i++) {
-//                g.setColor(Color.blue);
-//                int x = random.nextInt(500);
-//                int y = random.nextInt(350);
-//                int dx = random.nextInt(100);
-//                int dy = random.nextInt(100);
-//                if (random.nextBoolean()) {
-//                    g.fillOval(x, y, dx, dy);
-//                } else {
-//                    g.fillRect(x, y, dx, dy);
-//                }
-//            }
         }
     }
 }

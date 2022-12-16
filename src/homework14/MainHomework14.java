@@ -1,11 +1,7 @@
-package lesson14;
+package homework14;
 
-
-import homework14Extra.MainHomework14Extra;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.*;
 
 /**
  * Java Pro. Lesson #14.
@@ -14,24 +10,29 @@ import java.util.*;
  * @version 15.12.22
  */
 
-public class MainLesson14 extends JFrame {
+public class MainHomework14 extends JFrame {
 
     public static void main(String[] args) {
         HashTable<String, String> hashTable = new HashTable<>();
-        hashTable.put("Kiev", "Ukraine");
-        hashTable.put("Berlin", "Germany");
-        hashTable.put("Paris", "France");
-        hashTable.put("Madrid", "Spain");
-        hashTable.put("Oslo", "Sweden");
-        hashTable.put("Baku", "Azer");
-        hashTable.put("Seul", "Canada");
-        hashTable.put("Praga", "CZ Republic");
-        hashTable.put("Warsawa", "Poland");
-        hashTable.put("Amsterdam", "Holland");
-        hashTable.put("Vien", "Austria");
-        hashTable.put("Seul", "Canada");
-        hashTable.put("Sofia", "Bulgaria");
-        hashTable.put("New York", "USA");
+        hashTable.put("Kiev", "Ukraine"); //15
+        hashTable.put("Berlin", "Germany"); //2
+        hashTable.put("Paris", "France"); //11
+        hashTable.put("Madrid", "Spain"); //13
+        hashTable.put("Oslo", "Sweden"); //7
+        hashTable.put("Baku", "Azer"); //9
+        hashTable.put("Seul", "Canada"); //9
+        hashTable.put("Praga", "CZ Republic"); //9
+        hashTable.put("Warsawa", "Poland"); //0
+        hashTable.put("Amsterdam", "Holland"); //6
+        hashTable.put("Vien", "Austria"); //12
+        hashTable.put("Riga", "Latvia"); //1
+        hashTable.put("Sofia", "Bulgaria"); //2
+        hashTable.put("New York", "USA"); //15
+
+//        System.out.println(hashTable.remove("Kiev"));
+//        System.out.println(hashTable.remove("New York"));
+        System.out.println(hashTable.remove("Seul"));
+        hashTable.put("Seul", "Canada"); //9
 
 
 //        System.out.println(hashTable.get("Kiev"));
