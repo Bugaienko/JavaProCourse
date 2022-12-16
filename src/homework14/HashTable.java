@@ -9,12 +9,12 @@ public class HashTable<K, V> extends JFrame {
     private Entry<K, V>[] buckets = new Entry[capacity];
     private int size = 0;
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public HashTable() {
         setTitle("HashMap work scheme");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(1200, 600);
+        setSize(1920, 600);
         setLocationRelativeTo(null);
 
         CanvasPanel canvasPanel = new CanvasPanel();
@@ -47,7 +47,23 @@ public class HashTable<K, V> extends JFrame {
             pointer.next = entry;
         }
         size++;
+        if (size >= capacity * 0.8) {
+            capacity = (int) (capacity * 1.5);
+            recalculateMap();
+        }
     }
+
+    private void recalculateMap() {
+        Entry<K, V>[] tempBuckets  = toArray(buckets);
+        size = 0;
+        buckets = new Entry[capacity];
+
+        for (Entry<K, V> entry : tempBuckets){
+            put(entry.key, entry.value);
+        }
+        System.out.println("HashMap was recalculate");
+    }
+
 
     public V get(K key) {
         int hash = key.hashCode();
@@ -79,11 +95,13 @@ public class HashTable<K, V> extends JFrame {
             } else {
                 buckets[idx] = buckets[idx].next;
             }
+            size--;
             return result;
         }
         Entry<K, V> next = pointer.next;
         while (next != null) {
             if (next.key.equals(key)) {
+                size--;
                 V result = next.value;
                 if (next.next == null) {
                     pointer.next = null;
@@ -113,6 +131,20 @@ public class HashTable<K, V> extends JFrame {
 
     }
 
+    private Entry[] toArray(Entry[] bucketsMap){
+        Entry[] array = new Entry[size];
+        int counter = 0;
+        for (Entry<K, V> entry: bucketsMap ) {
+            Entry<K, V> pointer = entry;
+            while (pointer != null) {
+                array[counter++] = pointer;
+                pointer = pointer.next;
+            }
+        }
+        System.out.println(array);
+        return array;
+    }
+
     @Override
     public String toString() {
         int counter = 0;
@@ -135,12 +167,16 @@ public class HashTable<K, V> extends JFrame {
         @Override
         public void paint(Graphics g) {
             super.paint(g);
+            g.setColor(Color.black);
+            String sizeStr = "size = " + size;
+            g.drawString(sizeStr, 780, 13);
             for (int i = 0; i < buckets.length; i++) {
                 int link = 0;
                 int x = 10 + i * 70;
                 int y = 20;
                 int dx = 65;
                 int dy = 65;
+
                 if (buckets[i] != null) {
                     g.setColor(Color.cyan);
                     Rectangle rect1 = new Rectangle(x, y, dx, dy);

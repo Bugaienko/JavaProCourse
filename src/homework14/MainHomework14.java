@@ -26,13 +26,18 @@ public class MainHomework14 extends JFrame {
         hashTable.put("Amsterdam", "Holland"); //6
         hashTable.put("Vien", "Austria"); //12
         hashTable.put("Riga", "Latvia"); //1
-        hashTable.put("Sofia", "Bulgaria"); //2
-        hashTable.put("New York", "USA"); //15
 
-//        System.out.println(hashTable.remove("Kiev"));
-//        System.out.println(hashTable.remove("New York"));
-        System.out.println(hashTable.remove("Seul"));
-        hashTable.put("Seul", "Canada"); //9
+        // После добавления этого элемента произойдет пересчет карты
+
+//        hashTable.put("Sofia", "Bulgaria"); //2
+//        hashTable.put("New York", "USA"); //15
+//
+//
+//        System.out.println("remove - " + hashTable.remove("Seul"));
+//        hashTable.put("Seul", "Canada"); //9
+//        hashTable.put("London", "United Kingdom"); //9
+//        hashTable.put("Athens", "Greece"); //9
+//        hashTable.put("Rome", "Italy"); //9
 
 
 //        System.out.println(hashTable.get("Kiev"));
