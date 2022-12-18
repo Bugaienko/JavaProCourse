@@ -16,6 +16,5 @@ public class CommandLine {
             String choice = scanner.nextLine();
             flag = hashTable.readCommand(choice);
         }
-
     }
 }

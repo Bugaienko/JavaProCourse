@@ -1,7 +1,7 @@
 package homework14;
 
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 /**
  * Java Pro. Lesson #14.
@@ -71,16 +71,7 @@ public class MainHomework14 extends JFrame {
 //        System.out.println(map.entrySet());
 //        System.out.println(map.values());
 
-
-//        List<Integer> arrayList = new ArrayList<>();
-//        List<Integer> linkedList = new LinkedList<>();
-//        Set<Integer> hashSet = new HashSet<>();
-//        ex(arrayList);
-//        ex(linkedList);
-//        ex(hashSet);
     }
-   //    private static void ex(Collection<Integer> list){
-//        //TODO
-//    }
+
 
 }
