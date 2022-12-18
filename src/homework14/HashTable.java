@@ -8,6 +8,7 @@ import java.awt.Button;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -16,30 +17,41 @@ public class HashTable<K, V> extends JFrame {
     private Entry<K, V>[] buckets = new Entry[capacity];
     private int size = 0;
     private final Random random = new Random();
+    private boolean isSwing = false;
 
     public HashTable() {
-        setTitle("HashMap work scheme");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(1920, 600);
-        setLocationRelativeTo(null);
 
-        CanvasPanel canvasPanel = new CanvasPanel();
-        canvasPanel.setBackground(Color.lightGray);
-
-        Button button = new Button("Repaint");
-        button.addActionListener(e -> {
-            System.out.println("Repaint");
-            canvasPanel.repaint();
-        });
-        add(canvasPanel, BorderLayout.CENTER);
-        add(button, BorderLayout.SOUTH);
-
-        setVisible(true);
+//        setTitle("HashMap work scheme");
+//        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        setSize(1920, 600);
+//        setLocationRelativeTo(null);
+//
+//        CanvasPanel canvasPanel = new CanvasPanel();
+//        canvasPanel.setBackground(Color.lightGray);
+//
+//        Button button = new Button("Repaint");
+//        button.addActionListener(e -> {
+//            System.out.println("Repaint");
+//            canvasPanel.repaint();
+//        });
+//        add(canvasPanel, BorderLayout.CENTER);
+//        add(button, BorderLayout.SOUTH);
+//
+//        setVisible(true);
     }
 
-    public void addList(List<Dict> list){
-        for (Dict dict: list){
-            put((K) dict.getCapital(), (V)dict.getCountry());
+    public void swingMe() {
+        if (!isSwing) {
+            isSwing = true;
+            new HashMapSwing();
+        } else {
+            System.out.println("Already starting");
+        }
+    }
+
+    public void addList(List<Dict> list) {
+        for (Dict dict : list) {
+            put((K) dict.getCapital(), (V) dict.getCountry());
         }
     }
 
@@ -169,6 +181,7 @@ public class HashTable<K, V> extends JFrame {
         return array;
     }
 
+
     @Override
     public String toString() {
         int counter = 0;
@@ -185,6 +198,74 @@ public class HashTable<K, V> extends JFrame {
             }
         }
         return sb.append("]").toString();
+    }
+
+    public boolean readCommand(String command) {
+
+        String[] tokens = command.split(" ");
+        switch (tokens[0].toLowerCase()) {
+            case "put":
+                put(tokens);
+                break;
+            case "get":
+                get(tokens);
+                break;
+            case "remove":
+                remove(tokens);
+                break;
+            case "swing":
+                swingMe();
+                break;
+            case "exit":
+                System.out.println("exit");
+                return false;
+            default:
+                System.out.println("Def");
+                return false;
+        }
+        return true;
+    }
+
+    private void get(String[] tokens) {
+//        System.out.println("GET " + Arrays.toString(tokens));
+        if (tokens.length > 1) {
+            System.out.println(get((K) tokens[1]));
+        }
+    }
+
+    private void put(String[] tokens) {
+        System.out.println("Put " + Arrays.toString(tokens));
+        if (tokens.length > 2) {
+            put((K) tokens[1], (V) tokens[2]);
+        }
+    }
+
+    private void remove(String[] tokens) {
+        if (tokens.length > 1) {
+            remove((K) tokens[1]);
+        }
+    }
+
+    private class HashMapSwing extends JFrame {
+        public HashMapSwing() {
+            setTitle("HashMapSwing scheme");
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            setSize(1740, 600);
+            setLocationRelativeTo(null);
+
+            CanvasPanel canvasPanel = new CanvasPanel();
+            canvasPanel.setBackground(Color.lightGray);
+
+            Button button = new Button("Repaint");
+            button.addActionListener(e -> {
+                System.out.println("Repaint");
+                canvasPanel.repaint();
+            });
+            add(canvasPanel, BorderLayout.CENTER);
+            add(button, BorderLayout.SOUTH);
+
+            setVisible(true);
+        }
     }
 
     private class CanvasPanel extends JPanel {

@@ -13,8 +13,10 @@ import javax.swing.*;
 public class MainHomework14 extends JFrame {
 
     public static void main(String[] args) {
-        HashTable<String, String> hashTable = new HashTable<>();
-        hashTable.addList(Init.init());
+        new CommandLine().exec();
+
+//        HashTable<String, String> hashTable = new HashTable<>();
+//        hashTable.addList(Init.init());
 
 //        hashTable.put("Seul", "Canada2"); //9
 
@@ -57,7 +59,8 @@ public class MainHomework14 extends JFrame {
 
 
 
-        System.out.println(hashTable);
+//        System.out.println(hashTable);
+
 //        Map<String, String> map = new HashMap<>();
 //        map.put("Kiev", "Ukraine");
 //        map.put("Berlin", "Germany");
