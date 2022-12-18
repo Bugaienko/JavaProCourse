@@ -14,18 +14,22 @@ public class MainHomework14 extends JFrame {
 
     public static void main(String[] args) {
         HashTable<String, String> hashTable = new HashTable<>();
-        hashTable.put("Kiev", "Ukraine"); //15
-        hashTable.put("Berlin", "Germany"); //2
-        hashTable.put("Paris", "France"); //11
-        hashTable.put("Madrid", "Spain"); //13
-        hashTable.put("Oslo", "Sweden"); //7
-        hashTable.put("Baku", "Azer"); //9
-        hashTable.put("Seul", "Canada"); //9
-        hashTable.put("Praga", "CZ Republic"); //9
-        hashTable.put("Warsawa", "Poland"); //0
-        hashTable.put("Amsterdam", "Holland"); //6
-        hashTable.put("Vien", "Austria"); //12
-        hashTable.put("Riga", "Latvia"); //1
+        hashTable.addList(Init.init());
+
+//        hashTable.put("Seul", "Canada2"); //9
+
+//        hashTable.put("Kiev", "Ukraine"); //15
+//        hashTable.put("Berlin", "Germany"); //2
+//        hashTable.put("Paris", "France"); //11
+//        hashTable.put("Madrid", "Spain"); //13
+//        hashTable.put("Oslo", "Sweden"); //7
+//        hashTable.put("Baku", "Azer"); //9
+//        hashTable.put("Seul", "Canada"); //9
+//        hashTable.put("Praga", "CZ Republic"); //9
+//        hashTable.put("Warsawa", "Poland"); //0
+//        hashTable.put("Amsterdam", "Holland"); //6
+//        hashTable.put("Vien", "Austria"); //12
+//        hashTable.put("Riga", "Latvia"); //1
 
         // После добавления этого элемента произойдет пересчет карты
 

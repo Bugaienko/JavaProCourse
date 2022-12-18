@@ -1,14 +1,20 @@
 package homework14;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.util.List;
 import java.util.Random;
 
 public class HashTable<K, V> extends JFrame {
     private int capacity = 16;
     private Entry<K, V>[] buckets = new Entry[capacity];
     private int size = 0;
-
     private final Random random = new Random();
 
     public HashTable() {
@@ -31,34 +37,52 @@ public class HashTable<K, V> extends JFrame {
         setVisible(true);
     }
 
+    public void addList(List<Dict> list){
+        for (Dict dict: list){
+            put((K) dict.getCapital(), (V)dict.getCountry());
+        }
+    }
+
     public void put(K key, V value) {
         int hash = key.hashCode();
-//        System.out.println("hash: " + hash);
-        Entry<K, V> entry = new Entry<>(hash, key, value);
         int idx = hash & (capacity - 1);
         System.out.println("idx: " + idx);
-        if (buckets[idx] == null) {
-            buckets[idx] = entry;
+        if (get(key) == null) {
+//        System.out.println("hash: " + hash);
+            Entry<K, V> entry = new Entry<>(hash, key, value);
+            if (buckets[idx] == null) {
+                buckets[idx] = entry;
+            } else {
+                Entry<K, V> pointer = buckets[idx];
+                while (pointer.next != null) {
+                    pointer = pointer.next;
+                }
+                pointer.next = entry;
+            }
+            size++;
+            if (size >= capacity * 0.8) {
+                capacity = (int) (capacity * 1.5);
+                recalculateMap();
+            }
         } else {
             Entry<K, V> pointer = buckets[idx];
-            while (pointer.next != null) {
+            while (pointer != null) {
+                if (pointer.key.equals(key)) {
+                    pointer.value = value;
+                    size++;
+                    return;
+                }
                 pointer = pointer.next;
             }
-            pointer.next = entry;
-        }
-        size++;
-        if (size >= capacity * 0.8) {
-            capacity = (int) (capacity * 1.5);
-            recalculateMap();
         }
     }
 
     private void recalculateMap() {
-        Entry<K, V>[] tempBuckets  = toArray(buckets);
+        Entry<K, V>[] tempBuckets = toArray(buckets);
         size = 0;
         buckets = new Entry[capacity];
 
-        for (Entry<K, V> entry : tempBuckets){
+        for (Entry<K, V> entry : tempBuckets) {
             put(entry.key, entry.value);
         }
         System.out.println("HashMap was recalculate");
@@ -131,10 +155,10 @@ public class HashTable<K, V> extends JFrame {
 
     }
 
-    private Entry[] toArray(Entry[] bucketsMap){
+    private Entry[] toArray(Entry[] bucketsMap) {
         Entry[] array = new Entry[size];
         int counter = 0;
-        for (Entry<K, V> entry: bucketsMap ) {
+        for (Entry<K, V> entry : bucketsMap) {
             Entry<K, V> pointer = entry;
             while (pointer != null) {
                 array[counter++] = pointer;
