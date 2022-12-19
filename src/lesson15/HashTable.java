@@ -1,13 +1,8 @@
-package homework14;
+package lesson15;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -81,7 +76,6 @@ public class HashTable<K, V> extends JFrame {
             while (pointer != null) {
                 if (pointer.key.equals(key)) {
                     pointer.value = value;
-
                     return;
                 }
                 pointer = pointer.next;
