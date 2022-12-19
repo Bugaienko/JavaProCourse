@@ -9,12 +9,13 @@ import java.util.Random;
 
 public class HashTable<K, V> extends JFrame {
     private int capacity = 16;
-    private Entry<K, V>[] buckets = new Entry[capacity];
+    private Entry<K, V>[] buckets;
     private int size = 0;
     private final Random random = new Random();
     private boolean isSwing = false;
 
     public HashTable() {
+        this.buckets = new Entry[capacity];
 
 //        setTitle("HashMap work scheme");
 //        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -33,6 +34,11 @@ public class HashTable<K, V> extends JFrame {
 //        add(button, BorderLayout.SOUTH);
 //
 //        setVisible(true);
+    }
+
+    public HashTable(int capacity) {
+        this.capacity = capacity;
+        this.buckets = new Entry[capacity];
     }
 
     public void swingMe() {
@@ -146,10 +152,10 @@ public class HashTable<K, V> extends JFrame {
         return null;
     }
 
-    private class Entry<K, V> {
+    public class Entry<K, V> {
         private int hash;
-        private K key;
-        private V value;
+        public K key;
+        public V value;
         Entry<K, V> next;
 
         public Entry(int hash, K key, V value) {
@@ -175,6 +181,9 @@ public class HashTable<K, V> extends JFrame {
         return array;
     }
 
+    public Entry[] getBuckets() {
+        return buckets;
+    }
 
     @Override
     public String toString() {
@@ -220,21 +229,21 @@ public class HashTable<K, V> extends JFrame {
         return true;
     }
 
-    private void get(String[] tokens) {
+    public void get(String[] tokens) {
 //        System.out.println("GET " + Arrays.toString(tokens));
         if (tokens.length > 1) {
             System.out.println(get((K) tokens[1]));
         }
     }
 
-    private void put(String[] tokens) {
+    public void put(String[] tokens) {
         System.out.println("Put " + Arrays.toString(tokens));
         if (tokens.length > 2) {
             put((K) tokens[1], (V) tokens[2]);
         }
     }
 
-    private void remove(String[] tokens) {
+    public void remove(String[] tokens) {
         if (tokens.length > 1) {
             remove((K) tokens[1]);
         }

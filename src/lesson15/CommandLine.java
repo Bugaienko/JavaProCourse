@@ -9,6 +9,8 @@ public class CommandLine {
         System.out.println("HashTable v.14.0.1");
         HashTable<String, String> hashTable = new HashTable<>();
         hashTable.addList(Init.init());
+
+
         Scanner scanner = new Scanner(System.in);
         boolean flag = true;
         System.out.println("# Main menu");
