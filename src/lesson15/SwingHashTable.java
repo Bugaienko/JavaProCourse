@@ -27,7 +27,7 @@ public class SwingHashTable extends JFrame {
     }
 
     public SwingHashTable() {
-        initTable();
+        initTable(); // Если закомментировать - будет пустая карта
         setTitle("HashTable");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,7 +56,6 @@ public class SwingHashTable extends JFrame {
                 default:
                     textField.setText("Неверная команда");
             }
-
             canvasPanel.repaint();
         });
         JPanel bottomPanel = new JPanel();
