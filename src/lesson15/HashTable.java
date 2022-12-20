@@ -72,16 +72,16 @@ public class HashTable<K, V> extends JFrame {
             } else {
                 Entry<K, V> pointer = buckets[idx];
 
-                //if key equal - re-write value
-                Entry<K, V> temp = buckets[idx];
-                while (temp != null) {
-                    if (temp.key.equals(key)) {
-                        temp.value = value;
-                        return;
-                    }
-                    temp = temp.next;
-                }
-                
+//                //if key equal - re-write value
+//                Entry<K, V> temp = buckets[idx];
+//                while (temp != null) {
+//                    if (temp.key.equals(key)) {
+//                        temp.value = value;
+//                        return;
+//                    }
+//                    temp = temp.next;
+//                }
+
                 while (pointer.next != null) {
                     pointer = pointer.next;
                 }
