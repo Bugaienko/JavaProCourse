@@ -9,9 +9,9 @@ import javax.swing.WindowConstants;
 import java.awt.*;
 
 public class SwingHashTable extends JFrame {
-    private final int WIDTH_SIZE = 1024;
+    private final int WIDTH_SIZE = 1800;
     private final int HEIGHT_SIZE = 600;
-    private HashTable<String, String> hashTable = new HashTable<>(8);
+    private HashTable<String, String> hashTable = new HashTable<>(16);
 
     public static void main(String[] args) {
         new SwingHashTable();
@@ -76,7 +76,9 @@ public class SwingHashTable extends JFrame {
         public void paint(Graphics g) {
             super.paint(g);
             HashTable<String, String>.Entry<String, String>[] table = hashTable.getBuckets();
-            System.out.println(table.length);
+            g.setColor(Color.black);
+            String sizeStr = "size = " + hashTable.getSizeTable();
+            g.drawString(sizeStr, 780, 13);
 
             for (int i = 0; i < table.length; i++) {
                 int link = 0;

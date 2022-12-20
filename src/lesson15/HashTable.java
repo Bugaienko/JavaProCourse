@@ -56,6 +56,10 @@ public class HashTable<K, V> extends JFrame {
         }
     }
 
+    public int getSizeTable() {
+        return size;
+    }
+
     public void put(K key, V value) {
         int hash = key.hashCode();
         int idx = hash & (capacity - 1);
@@ -67,6 +71,17 @@ public class HashTable<K, V> extends JFrame {
                 buckets[idx] = entry;
             } else {
                 Entry<K, V> pointer = buckets[idx];
+
+                //if key equal - re-write value
+                Entry<K, V> temp = buckets[idx];
+                while (temp != null) {
+                    if (temp.key.equals(key)) {
+                        temp.value = value;
+                        return;
+                    }
+                    temp = temp.next;
+                }
+                
                 while (pointer.next != null) {
                     pointer = pointer.next;
                 }
