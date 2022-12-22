@@ -1,4 +1,4 @@
-package lesson15;
+package lesson16;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -45,12 +45,12 @@ public class SwingHashTable extends JFrame {
                     textField.setText("");
                     break;
                 case "get":
-                    hashTable.get(tokens);
-                    textField.setText("");
+                    String res = hashTable.get(tokens);
+                    textField.setText(res);
                     break;
                 case "remove":
-                    hashTable.remove(tokens);
-                    textField.setText("");
+                    String res2 = hashTable.remove(tokens);
+                    textField.setText(res2);
                     break;
                 default:
                     textField.setText("Неверная команда");

@@ -1,7 +1,9 @@
-package lesson15;
+package lesson16;
 
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
@@ -255,11 +257,14 @@ public class HashTable<K, V> extends JFrame {
         return true;
     }
 
-    public void get(String[] tokens) {
+    public V get(String[] tokens) {
 //        System.out.println("GET " + Arrays.toString(tokens));
         if (tokens.length > 1) {
-            System.out.println(get((K) tokens[1]));
+            V result = get((K) tokens[1]);
+            System.out.println((String) result);
+            return result;
         }
+        return null;
     }
 
     public void put(String[] tokens) {
@@ -269,10 +274,12 @@ public class HashTable<K, V> extends JFrame {
         }
     }
 
-    public void remove(String[] tokens) {
+    public V remove(String[] tokens) {
+        V result = null;
         if (tokens.length > 1) {
-            remove((K) tokens[1]);
+            result = remove((K) tokens[1]);
         }
+        return result;
     }
 
     private class HashMapSwing extends JFrame {
