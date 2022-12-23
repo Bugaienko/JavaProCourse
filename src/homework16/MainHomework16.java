@@ -1,6 +1,6 @@
-package lesson16_part2;
+package homework16;
 
-public class MainLesson16 {
+public class MainHomework16 {
     public static void main(String[] args) {
         Operationable addition = new Operationable() {
             @Override
