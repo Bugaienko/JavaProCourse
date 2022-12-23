@@ -2,21 +2,15 @@ package homework16;
 
 public class MainHomework16 {
     public static void main(String[] args) {
-        Operationable addition = new Operationable() {
-            @Override
-            public int calculate(int x, int y) {
-                return x + y;
-            }
-        };
-
+        Operationable addition = (x, y) -> x + y;
         Operationable subtractions = (x, y) -> x - y;
-//        Operationable subtractions = (x, y) -> {
-//            return x - y;
-//        };
-
         Operationable multiplication = (x, y) -> x * y;
-
         Operationable division = (x, y) -> x / y;
+
+        Operationable2 mod = (x -> {
+            return (x < 0) ? x * (-1) : x;
+        });
+        Operationable2 square = (x -> x * x);
 
         int a = addition.calculate(5, 5);
         System.out.println(a);
@@ -29,6 +23,12 @@ public class MainHomework16 {
 
         int d = division.calculate(5, 2);
         System.out.println(d);
+
+        int e = mod.calculate(-5);
+        System.out.println(e);
+
+        int f = square.calculate(4);
+        System.out.println(f);
 
         //TODO Добавить умножение и деление
         // 2. В Lesson12 добавить лямбды для компораторов
