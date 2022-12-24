@@ -11,8 +11,6 @@ public class Poison extends Point implements IObstacle {
         super(-1, -1);
         this.type = "poison";
         setColor(POISON_COLOR);
-        System.out.println("Constr1 poison");
-
     }
 
     public void init(SnakeUpdate snake) {
@@ -21,7 +19,6 @@ public class Poison extends Point implements IObstacle {
             do {
                 x = random.nextInt(FIELD_WEIGHT);
                 y = random.nextInt(FIELD_HEIGHT - 1);
-                System.out.println("Init poison");
             } while (snake.isInsideSnake(x, y));
             counter++;
             setXY(x, y);
