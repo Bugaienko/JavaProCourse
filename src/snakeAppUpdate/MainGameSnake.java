@@ -1,6 +1,5 @@
 package snakeAppUpdate;
 
-import snapeApp.GameSnake;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,16 +38,12 @@ public class MainGameSnake {
 
 
     private SnakeUpdate snake;
-    private FoodUpdate food;
-    private Poison poison;
     private List<IObstacle> obstacles;
-//    Poison poison;
 
     JFrame frame;
     Canvas canvasPanel;
     static Random random = new Random();
-    static Boolean isGameOver = false;
-
+    Boolean isGameOver = false;
 
 
     public static void main(String[] args) {
@@ -78,11 +73,7 @@ public class MainGameSnake {
 
         snake = new SnakeUpdate(START_SNAKE_X, START_SNAKE_Y, START_SNAKE_SIZE, START_DIRECTION);
         obstacles = new ArrayList<>();
-        food = new FoodUpdate();
-        poison = new Poison();
-//        poison.init(snake);
-        while (!isGameOver){
-//            snake.move(food, poison);
+        while (!isGameOver) {
             snake.go(obstacles);
             if (moveEaten()) {
                 frame.setTitle(TITLE_OF_PROGRAM + " : " + snake.getSize());
@@ -99,16 +90,14 @@ public class MainGameSnake {
 
     }
 
-    public class Canvas extends JPanel{
+    public class Canvas extends JPanel {
         @Override
-        public void paint(Graphics g){
+        public void paint(Graphics g) {
             super.paint(g);
             snake.paint(g);
             for (IObstacle obstacle : obstacles) {
                 obstacle.paint(g);
             }
-//            food.paint(g);
-//            poison.paint(g);
             if (isGameOver) {
                 g.setColor(Color.red);
                 g.setFont(new Font("Arial", Font.BOLD, 40));
@@ -120,9 +109,9 @@ public class MainGameSnake {
 
     }
 
-    private boolean moveEaten(){
+    private boolean moveEaten() {
         boolean result = false;
-        for (IObstacle obstacle : obstacles){
+        for (IObstacle obstacle : obstacles) {
             if (obstacle.getType().equals("food") && obstacle.isEaten()) {
                 System.out.println("Еда съедена. Надо передвигать");
                 obstacle.relocate(snake, obstacles);

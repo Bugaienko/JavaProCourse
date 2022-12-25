@@ -1,9 +1,13 @@
 package snakeAppUpdate;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.util.List;
 
-import static snakeAppUpdate.MainGameSnake.*;
+import static snakeAppUpdate.MainGameSnake.FIELD_HEIGHT;
+import static snakeAppUpdate.MainGameSnake.FIELD_WEIGHT;
+import static snakeAppUpdate.MainGameSnake.FOOD_COLOR;
+import static snakeAppUpdate.MainGameSnake.POINT_RADIUS;
+import static snakeAppUpdate.MainGameSnake.random;
 
 public class FoodUpdate extends Point implements IObstacle {
     String type;
@@ -58,17 +62,6 @@ public class FoodUpdate extends Point implements IObstacle {
     public void paint(Graphics g) {
         g.setColor(super.getColor());
         g.fillOval(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
-    }
-
-
-    void next(SnakeUpdate snake, Poison poison) {
-        poison.init(snake);
-        int x, y;
-        do {
-            x = random.nextInt(FIELD_WEIGHT);
-            y = random.nextInt(FIELD_HEIGHT -1);
-        } while (snake.isInsideSnake(x, y) && (poison.getX() != x && poison.getY() != y));
-        setXY(x, y);
     }
 
     @Override

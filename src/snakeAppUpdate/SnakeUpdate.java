@@ -1,6 +1,6 @@
 package snakeAppUpdate;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,42 +102,8 @@ public class SnakeUpdate {
         System.out.println();
     }
 
-    public void move(FoodUpdate food, Poison poison) {
-        int x = snake.get(0).getX();
-        int y = snake.get(0).getY();
-        if (direction == LEFT) x--;
-        if (direction == RIGHT) x++;
-        if (direction == UP) y--;
-        if (direction == DOWN) y++;
-
-        if (x > FIELD_WEIGHT) x = 0;
-        if (x < 0) x = FIELD_WEIGHT - 1;
-        if (y > FIELD_HEIGHT - 1) y = 0;
-        if (y < 0) y = FIELD_HEIGHT - 1;
-
-        isFailed = isInsideSnake(x, y);
-        if (isFailed) {
-            System.out.println("EAT!!!");
-        }
-        snake.add(0, new Point(x, y));
-        if (isNoEmpty(poison)) {
-            poison.eat();
-            isFailed = true;
-        }
-        if (isNoEmpty(food)) {
-            food.eat();
-        } else {
-            snake.remove(snake.size() - 1);
-        }
-    }
-
     public boolean isFailed() {
         return isFailed;
-    }
-
-    private boolean isNoEmpty(Point food) {
-        return (snake.get(0).getX() == food.getX() &&
-                snake.get(0).getY() == food.getY());
     }
 
     private boolean isNoEmptyObstacle(IObstacle obstacle) {
@@ -158,7 +124,6 @@ public class SnakeUpdate {
     public void setDirection(int direction) {
         if (direction <= DOWN && direction >= LEFT) {
             if (Math.abs(this.direction - direction) != 2) {
-                System.out.println("Wrong direction");
                 this.direction = direction;
             }
         }

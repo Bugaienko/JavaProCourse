@@ -1,6 +1,6 @@
 package snakeAppUpdate;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.util.List;
 
 public interface IObstacle {
