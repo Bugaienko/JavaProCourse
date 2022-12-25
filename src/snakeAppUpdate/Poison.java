@@ -1,6 +1,6 @@
 package snakeAppUpdate;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.List;
 
 import static snakeAppUpdate.MainGameSnake.FIELD_HEIGHT;
@@ -47,8 +47,9 @@ public class Poison extends Point implements IObstacle {
 
     @Override
     public void paint(Graphics g) {
-        g.setColor(super.getColor());
-        g.fillOval(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(super.getColor());
+        g2d.fillOval(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
     }
 
     @Override

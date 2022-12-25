@@ -1,6 +1,7 @@
 package snakeAppUpdate;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 
 import static snakeAppUpdate.MainGameSnake.DEFAULT_COLOR;
@@ -21,8 +22,11 @@ public class Point {
         this.color = DEFAULT_COLOR;
     }
     void paint(Graphics g) {
-        g.setColor(color);
-        g.fillOval(x * POINT_RADIUS, y * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
+        Graphics2D graphics2D = (Graphics2D) g;
+        graphics2D.setColor(color);
+        Ellipse2D ellipse2D = new Ellipse2D.Double(x * POINT_RADIUS, y * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
+        graphics2D.fill(ellipse2D);
+//        graphics2D.fillOval(x * POINT_RADIUS, y * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
     }
 
     public void  setXY(int x, int y){

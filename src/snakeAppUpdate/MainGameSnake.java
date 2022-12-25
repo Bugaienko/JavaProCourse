@@ -92,7 +92,8 @@ public class MainGameSnake {
     public class Canvas extends JPanel {
         @Override
         public void paint(Graphics g) {
-            super.paint(g);
+            Graphics2D g2d = (Graphics2D) g;
+            super.paint(g2d);
             snake.paint(g);
             for (IObstacle obstacle : obstacles) {
                 obstacle.paint(g);

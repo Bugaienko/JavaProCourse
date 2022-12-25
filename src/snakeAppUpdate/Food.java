@@ -1,6 +1,7 @@
 package snakeAppUpdate;
 
-import java.awt.Graphics;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.util.List;
 
 import static snakeAppUpdate.MainGameSnake.FIELD_HEIGHT;
@@ -72,8 +73,11 @@ public class Food extends Point implements IObstacle {
 
     @Override
     public void paint(Graphics g) {
-        g.setColor(super.getColor());
-        g.fillOval(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(super.getColor());
+        Ellipse2D ellipse2D = new Ellipse2D.Double(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
+        g2d.fill(ellipse2D);
+//        g2d.fillOval(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
     }
 
     @Override
