@@ -44,6 +44,11 @@ public class Poison extends Point implements IObstacle {
         g.fillOval(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
     }
 
+    @Override
+    public boolean isObstacleCoordinate(int x, int y) {
+        return (x == this.getX() && y == this.getY());
+    }
+
     public boolean tryEat(){
         System.out.println("Poison try Eat");
         return  isEaten = true;

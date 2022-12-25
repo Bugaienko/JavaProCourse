@@ -50,12 +50,22 @@ public class FoodUpdate extends Point implements IObstacle {
             }
         }
         int x, y;
+        boolean isPoisonCell;
         do {
             x = random.nextInt(FIELD_WEIGHT);
             y = random.nextInt(FIELD_HEIGHT -1);
-        } while (snake.isInsideSnake(x, y));
+            isPoisonCell = false;
+            for (IObstacle obstacle : obstacles) {
+                    isPoisonCell = obstacle.isObstacleCoordinate(x, y);
+            }
+        } while (snake.isInsideSnake(x, y) || isPoisonCell);
         setXY(x, y);
 
+    }
+
+    @Override
+    public boolean isObstacleCoordinate(int x, int y) {
+        return (x == this.getX() && y == this.getY());
     }
 
     @Override

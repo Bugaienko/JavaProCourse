@@ -13,4 +13,6 @@ public interface IObstacle {
     void init(SnakeUpdate snake);
     void relocate(SnakeUpdate snake, List<IObstacle> list);
     void paint(Graphics g);
+
+    boolean isObstacleCoordinate(int x, int y);
 }
