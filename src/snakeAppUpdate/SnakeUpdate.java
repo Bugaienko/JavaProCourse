@@ -26,8 +26,8 @@ public class SnakeUpdate {
             IObstacle poison = new Poison();
             obstacles.add(food);
             obstacles.add(poison);
-            System.out.print("Init: ");
-            printArray(obstacles);
+//            System.out.print("Init: ");
+//            printArray(obstacles);
         }
 
         int x = snake.get(0).getX();
@@ -62,19 +62,19 @@ public class SnakeUpdate {
         int eatCounter = 0;
         for (IObstacle obstacle : obstacles) {
             if (isNoEmptyObstacle(obstacle)) {
-                System.out.println("Клетка занята");
+//                System.out.println("Клетка занята");
                 if (obstacle.getType().equals("poison")) {
-                    System.out.println("Занята ядом");
+//                    System.out.println("Занята ядом");
                     isFailed = obstacle.tryEat();
                 } else {
-                    System.out.println("Занята едой");
+//                    System.out.println("Занята едой");
                     obstacle.tryEat();
                     eatCounter++;
                 }
             }
         }
         if (eatCounter > 0) {
-            System.out.println("Клетка занята едой");
+//            System.out.println("Клетка занята едой");
         } else {
 //            System.out.println("Клетка свободна");
             snake.remove(snake.size() - 1);
