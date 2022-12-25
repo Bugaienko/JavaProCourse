@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -39,6 +41,7 @@ public class MainGameSnake {
     private SnakeUpdate snake;
     private FoodUpdate food;
     private Poison poison;
+    private List<IObstacle> obstacles;
 //    Poison poison;
 
     JFrame frame;
@@ -74,15 +77,17 @@ public class MainGameSnake {
         frame.setVisible(true);
 
         snake = new SnakeUpdate(START_SNAKE_X, START_SNAKE_Y, START_SNAKE_SIZE, START_DIRECTION);
+        obstacles = new ArrayList<>();
         food = new FoodUpdate();
         poison = new Poison();
 //        poison.init(snake);
         while (!isGameOver){
-            snake.move(food, poison);
-            if (food.isEaten()){
-                food.next(snake, poison);
+//            snake.move(food, poison);
+            snake.go(obstacles);
+            if (moveEaten()) {
                 frame.setTitle(TITLE_OF_PROGRAM + " : " + snake.getSize());
             }
+
             isGameOver = snake.isFailed();
             canvasPanel.repaint();
             try {
@@ -99,8 +104,11 @@ public class MainGameSnake {
         public void paint(Graphics g){
             super.paint(g);
             snake.paint(g);
-            food.paint(g);
-            poison.paint(g);
+            for (IObstacle obstacle : obstacles) {
+                obstacle.paint(g);
+            }
+//            food.paint(g);
+//            poison.paint(g);
             if (isGameOver) {
                 g.setColor(Color.red);
                 g.setFont(new Font("Arial", Font.BOLD, 40));
@@ -110,5 +118,17 @@ public class MainGameSnake {
             }
         }
 
+    }
+
+    private boolean moveEaten(){
+        boolean result = false;
+        for (IObstacle obstacle : obstacles){
+            if (obstacle.getType().equals("food") && obstacle.isEaten()) {
+                System.out.println("Еда съедена. Надо передвигать");
+                obstacle.relocate(snake, obstacles);
+                result = true;
+            }
+        }
+        return result;
     }
 }

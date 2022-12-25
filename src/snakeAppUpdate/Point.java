@@ -11,6 +11,10 @@ public class Point {
     private int x, y;
     private Color color;
 
+    public Color getColor() {
+        return color;
+    }
+
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
@@ -36,5 +40,13 @@ public class Point {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y + " " +
+                '}';
     }
 }
