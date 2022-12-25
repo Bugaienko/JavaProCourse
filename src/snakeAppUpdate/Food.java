@@ -74,7 +74,12 @@ public class Food extends Point implements IObstacle {
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(super.getColor());
+//        g2d.setColor(super.getColor());
+        float[] dist = {0.0f, 0.33f, 1.0f};
+        Color[] colors = {super.getColor(), Color.WHITE, super.getColor()};
+//        Color[] colors = {Color.ORANGE, Color.WHITE, Color.ORANGE};
+        RadialGradientPaint rp = new RadialGradientPaint( getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, dist, colors);
+        g2d.setPaint(rp);
         Ellipse2D ellipse2D = new Ellipse2D.Double(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
         g2d.fill(ellipse2D);
 //        g2d.fillOval(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);

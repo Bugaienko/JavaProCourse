@@ -1,6 +1,7 @@
 package snakeAppUpdate;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.util.List;
 
 import static snakeAppUpdate.MainGameSnake.FIELD_HEIGHT;
@@ -49,7 +50,12 @@ public class Poison extends Point implements IObstacle {
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(super.getColor());
-        g2d.fillOval(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
+        float[] dist = {0.0f, 0.33f, 1.0f};
+        Color[] colors = {super.getColor(), Color.WHITE, super.getColor()};
+        RadialGradientPaint rp = new RadialGradientPaint( getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, dist, colors);
+        g2d.setPaint(rp);
+        Ellipse2D ellipse2D = new Ellipse2D.Double(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
+        g2d.fill(ellipse2D);
     }
 
     @Override

@@ -24,6 +24,10 @@ public class Point {
     void paint(Graphics g) {
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.setColor(color);
+        float[] dist = {0.0f, 0.2f, 1.0f};
+        Color[] colors = {color, Color.WHITE, color};
+        RadialGradientPaint rp = new RadialGradientPaint( x * POINT_RADIUS, y * POINT_RADIUS, POINT_RADIUS, dist, colors);
+        graphics2D.setPaint(rp);
         Ellipse2D ellipse2D = new Ellipse2D.Double(x * POINT_RADIUS, y * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
         graphics2D.fill(ellipse2D);
 //        graphics2D.fillOval(x * POINT_RADIUS, y * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
