@@ -37,7 +37,7 @@ public class MainGameSnake {
     final static Color POISON_COLOR = Color.red;
 
 
-    private SnakeUpdate snake;
+    private Snake snake;
     private List<IObstacle> obstacles;
 
     JFrame frame;
@@ -71,7 +71,7 @@ public class MainGameSnake {
 
         frame.setVisible(true);
 
-        snake = new SnakeUpdate(START_SNAKE_X, START_SNAKE_Y, START_SNAKE_SIZE, START_DIRECTION);
+        snake = new Snake(START_SNAKE_X, START_SNAKE_Y, START_SNAKE_SIZE, START_DIRECTION);
         obstacles = new ArrayList<>();
         while (!isGameOver) {
             snake.go(obstacles);

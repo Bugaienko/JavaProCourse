@@ -20,7 +20,7 @@ public class Poison extends Point implements IObstacle {
         setColor(POISON_COLOR);
     }
 
-    public void init(SnakeUpdate snake) {
+    public void init(Snake snake) {
         if (counter == 0) {
             System.out.println("Poison init");
             int x, y;
@@ -34,7 +34,7 @@ public class Poison extends Point implements IObstacle {
     }
 
     @Override
-    public void relocate(SnakeUpdate snake, List<IObstacle> list) {
+    public void relocate(Snake snake, List<IObstacle> list) {
         return;
     }
 

@@ -10,8 +10,8 @@ public interface IObstacle {
     int getY();
 
     boolean tryEat();
-    void init(SnakeUpdate snake);
-    void relocate(SnakeUpdate snake, List<IObstacle> list);
+    void init(Snake snake);
+    void relocate(Snake snake, List<IObstacle> list);
     void paint(Graphics g);
 
     boolean isObstacleCoordinate(int x, int y);

@@ -7,12 +7,12 @@ import java.util.List;
 import static snakeAppUpdate.MainGameSnake.*;
 
 
-public class SnakeUpdate {
+public class Snake {
     List<Point> snake = new ArrayList<Point>();
     int direction;
     private boolean isFailed = false;
 
-    public SnakeUpdate(int x, int y, int length, int direction) {
+    public Snake(int x, int y, int length, int direction) {
         for (int i = 0; i < length; i++) {
             Point point = new Point(x - i, y);
             snake.add(point);
@@ -22,7 +22,7 @@ public class SnakeUpdate {
 
     public void go(List<IObstacle> obstacles) {
         if (obstacles.size() == 0) {
-            IObstacle food = new FoodUpdate();
+            IObstacle food = new Food();
             IObstacle poison = new Poison();
             obstacles.add(food);
             obstacles.add(poison);
@@ -84,13 +84,13 @@ public class SnakeUpdate {
 
     private void addNewObstacle(List<IObstacle> obstacles) {
         if (snake.size() == 8 && obstacles.size() < 3) {
-            obstacles.add(new FoodUpdate());
+            obstacles.add(new Food());
         }
         if (snake.size() == 12 && obstacles.size() < 4) {
             obstacles.add(new Poison());
         }
         if (snake.size() == 15 && obstacles.size() < 5) {
-            obstacles.add(new FoodUpdate());
+            obstacles.add(new Food());
         }
 
     }

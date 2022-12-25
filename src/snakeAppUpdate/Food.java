@@ -9,10 +9,10 @@ import static snakeAppUpdate.MainGameSnake.FOOD_COLOR;
 import static snakeAppUpdate.MainGameSnake.POINT_RADIUS;
 import static snakeAppUpdate.MainGameSnake.random;
 
-public class FoodUpdate extends Point implements IObstacle {
+public class Food extends Point implements IObstacle {
     private final String type;
 
-    public FoodUpdate() {
+    public Food() {
         super(-1, -1);
 //        super(10, 10);
         type = "food";
@@ -29,7 +29,7 @@ public class FoodUpdate extends Point implements IObstacle {
     }
 
     @Override
-    public void init(SnakeUpdate snake) {
+    public void init(Snake snake) {
         return;
     }
 
@@ -43,7 +43,7 @@ public class FoodUpdate extends Point implements IObstacle {
         return this.getX() < 0;
     }
 
-    public void relocate(SnakeUpdate snake, List<IObstacle> obstacles){
+    public void relocate(Snake snake, List<IObstacle> obstacles){
         for (IObstacle obstacle : obstacles){
             if (obstacle.getType().equals("poison")){
                 obstacle.init(snake);
