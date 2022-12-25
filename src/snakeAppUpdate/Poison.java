@@ -10,9 +10,9 @@ import static snakeAppUpdate.MainGameSnake.POISON_COLOR;
 import static snakeAppUpdate.MainGameSnake.random;
 
 public class Poison extends Point implements IObstacle {
-    String type;
-    boolean isEaten = false;
-    int counter = 0;
+    private final String type;
+    private boolean isEaten = false;
+    private int counter = 0;
 
     public Poison() {
         super(-1, -1);
@@ -42,11 +42,6 @@ public class Poison extends Point implements IObstacle {
     public void paint(Graphics g) {
         g.setColor(super.getColor());
         g.fillOval(getX() * POINT_RADIUS, getY() * POINT_RADIUS, POINT_RADIUS, POINT_RADIUS);
-    }
-
-    public void eat() {
-        System.out.println("Poison eat");
-        isEaten = true;
     }
 
     public boolean tryEat(){

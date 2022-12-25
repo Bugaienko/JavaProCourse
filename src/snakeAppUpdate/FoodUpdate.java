@@ -10,7 +10,7 @@ import static snakeAppUpdate.MainGameSnake.POINT_RADIUS;
 import static snakeAppUpdate.MainGameSnake.random;
 
 public class FoodUpdate extends Point implements IObstacle {
-    String type;
+    private final String type;
 
     public FoodUpdate() {
         super(-1, -1);
