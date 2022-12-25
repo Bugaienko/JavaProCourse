@@ -10,9 +10,10 @@ public interface IObstacle {
     int getY();
 
     boolean tryEat();
-    void init(Snake snake);
+    void init(Snake snake, List<IObstacle> obstacles);
     void relocate(Snake snake, List<IObstacle> list);
     void paint(Graphics g);
 
     boolean isObstacleCoordinate(int x, int y);
+    int getCounter();
 }

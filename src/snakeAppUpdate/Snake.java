@@ -8,7 +8,7 @@ import static snakeAppUpdate.MainGameSnake.*;
 
 
 public class Snake {
-    List<Point> snake = new ArrayList<Point>();
+    List<Point> snake = new ArrayList<>();
     int direction;
     private boolean isFailed = false;
 
@@ -83,14 +83,53 @@ public class Snake {
     }
 
     private void addNewObstacle(List<IObstacle> obstacles) {
-        if (snake.size() == 8 && obstacles.size() < 3) {
+        //add food
+        if (snake.size() == 10 && obstacles.size() < 3) {
             obstacles.add(new Food());
         }
-        if (snake.size() == 12 && obstacles.size() < 4) {
+
+        //add poison
+        if (snake.size() == 14 && obstacles.size() < 4) {
             obstacles.add(new Poison());
         }
-        if (snake.size() == 15 && obstacles.size() < 5) {
+
+        //add food
+        if (snake.size() == 20 && obstacles.size() < 5) {
             obstacles.add(new Food());
+        }
+
+        //mix poisons
+        if (snake.size() == 25 ){
+            for (IObstacle obstacle : obstacles){
+                if (obstacle.getType().equals("poison") && obstacle.getCounter() == 1) {
+                    obstacle.relocate(this, obstacles);
+                }
+            }
+        }
+
+        //add poison
+        if (snake.size() == 33 && obstacles.size() < 6) {
+            obstacles.add(new Poison());
+            obstacles.get(5).init(this, obstacles);
+            obstacles.get(5).relocate(this, obstacles);
+        }
+
+        // mix poisons
+        if (snake.size() == 42){
+            for (IObstacle obstacle : obstacles){
+                if (obstacle.getType().equals("poison") && obstacle.getCounter() == 2) {
+                    obstacle.relocate(this, obstacles);
+                }
+            }
+        }
+
+        //mix poisons
+        if (snake.size() == 51){
+            for (IObstacle obstacle : obstacles){
+                if (obstacle.getType().equals("poison") && obstacle.getCounter() == 3) {
+                    obstacle.relocate(this, obstacles);
+                }
+            }
         }
 
     }

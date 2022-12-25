@@ -19,9 +19,6 @@ public class Food extends Point implements IObstacle {
         setColor(FOOD_COLOR);
     }
 
-    public void eat() {
-        setXY(-2, -2);
-    }
     @Override
     public boolean tryEat(){
         setXY(-1, -1);
@@ -29,7 +26,7 @@ public class Food extends Point implements IObstacle {
     }
 
     @Override
-    public void init(Snake snake) {
+    public void init(Snake snake, List<IObstacle> obstacles) {
         return;
     }
 
@@ -46,7 +43,7 @@ public class Food extends Point implements IObstacle {
     public void relocate(Snake snake, List<IObstacle> obstacles){
         for (IObstacle obstacle : obstacles){
             if (obstacle.getType().equals("poison")){
-                obstacle.init(snake);
+                obstacle.init(snake, obstacles);
             }
         }
         int x, y;
@@ -66,6 +63,11 @@ public class Food extends Point implements IObstacle {
     @Override
     public boolean isObstacleCoordinate(int x, int y) {
         return (x == this.getX() && y == this.getY());
+    }
+
+    @Override
+    public int getCounter() {
+        return 0;
     }
 
     @Override

@@ -20,22 +20,29 @@ public class Poison extends Point implements IObstacle {
         setColor(POISON_COLOR);
     }
 
-    public void init(Snake snake) {
+    public void init(Snake snake, List<IObstacle> obstacles) {
         if (counter == 0) {
-            System.out.println("Poison init");
-            int x, y;
-            do {
-                x = random.nextInt(FIELD_WEIGHT);
-                y = random.nextInt(FIELD_HEIGHT - 1);
-            } while (snake.isInsideSnake(x, y));
-            counter++;
-            setXY(x, y);
+//            System.out.println("Poison init");
+            relocate(snake, obstacles);
         }
     }
 
     @Override
-    public void relocate(Snake snake, List<IObstacle> list) {
-        return;
+    public void relocate(Snake snake, List<IObstacle> obstacles) {
+//        System.out.println("Poison relocate");
+        int x, y;
+        boolean isPoisonCell;
+        do {
+            x = random.nextInt(FIELD_WEIGHT);
+            y = random.nextInt(FIELD_HEIGHT - 1);
+            isPoisonCell = false;
+            for (IObstacle obstacle : obstacles) {
+                isPoisonCell = obstacle.isObstacleCoordinate(x, y);
+            }
+        } while (snake.isInsideSnake(x, y) || isPoisonCell);
+        counter++;
+        setXY(x, y);
+//        System.out.println(this);
     }
 
     @Override
@@ -62,6 +69,10 @@ public class Poison extends Point implements IObstacle {
     @Override
     public boolean isEaten() {
         return isEaten;
+    }
+
+    public int getCounter() {
+        return counter;
     }
 
     @Override

@@ -78,7 +78,6 @@ public class MainGameSnake {
             if (moveEaten()) {
                 frame.setTitle(TITLE_OF_PROGRAM + " : " + snake.getSize());
             }
-
             isGameOver = snake.isFailed();
             canvasPanel.repaint();
             try {
@@ -113,7 +112,7 @@ public class MainGameSnake {
         boolean result = false;
         for (IObstacle obstacle : obstacles) {
             if (obstacle.getType().equals("food") && obstacle.isEaten()) {
-                System.out.println("Еда съедена. Надо передвигать");
+//                System.out.println("Еда съедена. Надо передвигать");
                 obstacle.relocate(snake, obstacles);
                 result = true;
             }
