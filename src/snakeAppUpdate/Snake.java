@@ -127,7 +127,7 @@ public class Snake {
         if (snake.size() == 51){
             for (IObstacle obstacle : obstacles){
                 if (obstacle.getType().equals("poison") && obstacle.getCounter() == 3) {
-                    obstacle.relocate(this, obstacles);
+                     obstacle.relocate(this, obstacles);
                 }
             }
         }

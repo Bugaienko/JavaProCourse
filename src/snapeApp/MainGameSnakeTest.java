@@ -1,20 +1,16 @@
-package snakeAppUpdate;
-
+package snapeApp;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Line2D;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
  * Classic Game Snake
  * written on December 2022
  */
-public class MainGameSnake {
+public class MainGameSnakeTest {
 
     final String TITLE_OF_PROGRAM = "Classic Game Snake";
     final String GAME_OVER_MSG = "GAME OVER!!!";
@@ -38,37 +34,32 @@ public class MainGameSnake {
     final static Color POISON_COLOR = Color.red;
 
 
-    private Snake snake;
-    private List<IObstacle> obstacles;
+    private SnakeUpdate snake;
+    private FoodUpdate food;
+    private Poison poison;
+//    Poison poison;
 
-    JFrame frame, frameBg;
+    JFrame frame;
     Canvas canvasPanel;
     static Random random = new Random();
-    Boolean isGameOver = false;
+    static Boolean isGameOver = false;
+
 
 
     public static void main(String[] args) {
-        new MainGameSnake().go();
+        new MainGameSnakeTest().go();
     }
 
     void go() {
-
-
         frame = new JFrame(TITLE_OF_PROGRAM + " : " + START_SNAKE_SIZE);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(FIELD_WEIGHT * POINT_RADIUS + FIELD_DX,
                 FIELD_HEIGHT * POINT_RADIUS + FIELD_DY);
         frame.setLocation(START_LOCATION, START_LOCATION);
         frame.setResizable(false);
-
-        canvasPanel = new Canvas();
+        canvasPanel = new MainGameSnakeTest.Canvas();
         canvasPanel.setBackground(Color.lightGray);
-
         frame.add(canvasPanel, BorderLayout.CENTER);
-
-
-
-
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -80,11 +71,14 @@ public class MainGameSnake {
 
         frame.setVisible(true);
 
-        snake = new Snake(START_SNAKE_X, START_SNAKE_Y, START_SNAKE_SIZE, START_DIRECTION);
-        obstacles = new ArrayList<>();
-        while (!isGameOver) {
-            snake.go(obstacles);
-            if (moveEaten()) {
+        snake = new SnakeUpdate(START_SNAKE_X, START_SNAKE_Y, START_SNAKE_SIZE, START_DIRECTION);
+        food = new FoodUpdate();
+        poison = new Poison();
+//        poison.init(snake);
+        while (!isGameOver){
+            snake.move(food, poison);
+            if (food.isEaten()){
+                food.next(snake, poison);
                 frame.setTitle(TITLE_OF_PROGRAM + " : " + snake.getSize());
             }
             isGameOver = snake.isFailed();
@@ -98,21 +92,18 @@ public class MainGameSnake {
 
     }
 
-    public class Canvas extends JPanel {
+    public class Canvas extends JPanel{
         @Override
-        public void paint(Graphics g) {
-            Graphics2D g2d = (Graphics2D) g;
-            super.paint(g2d);
-            drawNett(g);
+        public void paint(Graphics g){
+            super.paint(g);
             snake.paint(g);
-            for (IObstacle obstacle : obstacles) {
-                obstacle.paint(g);
-            }
+            food.paint(g);
+            poison.paint(g);
             if (isGameOver) {
-                g2d.setColor(Color.red);
-                g2d.setFont(new Font("Arial", Font.BOLD, 40));
-                FontMetrics fm = g2d.getFontMetrics();
-                g2d.drawString(GAME_OVER_MSG, (FIELD_WEIGHT * POINT_RADIUS + FIELD_DX - fm.stringWidth(GAME_OVER_MSG)) / 2,
+                g.setColor(Color.red);
+                g.setFont(new Font("Arial", Font.BOLD, 40));
+                FontMetrics fm = g.getFontMetrics();
+                g.drawString(GAME_OVER_MSG, (FIELD_WEIGHT * POINT_RADIUS + FIELD_DX - fm.stringWidth(GAME_OVER_MSG)) / 2,
                         (FIELD_HEIGHT * POINT_RADIUS + FIELD_DY) / 2);
             }
         }
@@ -120,31 +111,7 @@ public class MainGameSnake {
     }
 
 
-    private void drawNett(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(new Color(255, 255, 255, 32));
-        g2d.setStroke(new BasicStroke(2.0f, BasicStroke.CAP_ROUND,
-                BasicStroke.JOIN_BEVEL));
-        for (int i = 0; i < FIELD_WEIGHT * POINT_RADIUS; i += POINT_RADIUS) {
-            Line2D line = new Line2D.Double(i, 5, i, FIELD_HEIGHT * POINT_RADIUS - 25);
-            g2d.draw(line);
-        }
-        for (int i = 0; i < FIELD_HEIGHT * POINT_RADIUS; i += POINT_RADIUS) {
-            Line2D line = new Line2D.Double(5, i, FIELD_WEIGHT * POINT_RADIUS - 5, i);
-            g2d.draw(line);
-        }
-
-    }
-
-    private boolean moveEaten() {
-        boolean result = false;
-        for (IObstacle obstacle : obstacles) {
-            if (obstacle.getType().equals("food") && obstacle.isEaten()) {
-//                System.out.println("Еда съедена. Надо передвигать");
-                obstacle.relocate(snake, obstacles);
-                result = true;
-            }
-        }
-        return result;
+    public static void setIsGameOver(Boolean isGameOver) {
+        GameSnake.isGameOver = isGameOver;
     }
 }
