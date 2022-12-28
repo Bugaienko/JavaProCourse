@@ -4,11 +4,11 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.util.List;
 
-import static snakeAppUpdate.MainGameSnake.FIELD_HEIGHT;
-import static snakeAppUpdate.MainGameSnake.FIELD_WEIGHT;
-import static snakeAppUpdate.MainGameSnake.FOOD_COLOR;
-import static snakeAppUpdate.MainGameSnake.POINT_RADIUS;
-import static snakeAppUpdate.MainGameSnake.random;
+import static snakeAppUpdate.MainSnake.FIELD_HEIGHT;
+import static snakeAppUpdate.MainSnake.FIELD_WEIGHT;
+import static snakeAppUpdate.MainSnake.FOOD_COLOR;
+import static snakeAppUpdate.MainSnake.POINT_RADIUS;
+import static snakeAppUpdate.MainSnake.random;
 
 public class Food extends Point implements IObstacle {
     private final String type;

@@ -4,11 +4,11 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.util.List;
 
-import static snakeAppUpdate.MainGameSnake.FIELD_HEIGHT;
-import static snakeAppUpdate.MainGameSnake.FIELD_WEIGHT;
-import static snakeAppUpdate.MainGameSnake.POINT_RADIUS;
-import static snakeAppUpdate.MainGameSnake.POISON_COLOR;
-import static snakeAppUpdate.MainGameSnake.random;
+import static snakeAppUpdate.MainSnake.FIELD_HEIGHT;
+import static snakeAppUpdate.MainSnake.FIELD_WEIGHT;
+import static snakeAppUpdate.MainSnake.POINT_RADIUS;
+import static snakeAppUpdate.MainSnake.POISON_COLOR;
+import static snakeAppUpdate.MainSnake.random;
 
 public class Poison extends Point implements IObstacle {
     private final String type;

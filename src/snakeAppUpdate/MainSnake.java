@@ -14,7 +14,7 @@ import java.util.Random;
  * Classic Game Snake
  * written on December 2022
  */
-public class MainGameSnake {
+public class MainSnake {
 
     final String TITLE_OF_PROGRAM = "Classic Game Snake";
     final String GAME_OVER_MSG = "GAME OVER!!!";
@@ -41,19 +41,17 @@ public class MainGameSnake {
     private Snake snake;
     private List<IObstacle> obstacles;
 
-    JFrame frame, frameBg;
+    JFrame frame;
     Canvas canvasPanel;
     static Random random = new Random();
     Boolean isGameOver = false;
 
 
     public static void main(String[] args) {
-        new MainGameSnake().go();
+        new MainSnake().go();
     }
 
     void go() {
-
-
         frame = new JFrame(TITLE_OF_PROGRAM + " : " + START_SNAKE_SIZE);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(FIELD_WEIGHT * POINT_RADIUS + FIELD_DX,
@@ -65,9 +63,6 @@ public class MainGameSnake {
         canvasPanel.setBackground(Color.lightGray);
 
         frame.add(canvasPanel, BorderLayout.CENTER);
-
-
-
 
         frame.addKeyListener(new KeyAdapter() {
             @Override
@@ -104,6 +99,7 @@ public class MainGameSnake {
             Graphics2D g2d = (Graphics2D) g;
             super.paint(g2d);
             drawNett(g);
+            //TODO как-то не перерисовывать сетку (фон) повторно?
             snake.paint(g);
             for (IObstacle obstacle : obstacles) {
                 obstacle.paint(g);
@@ -118,6 +114,7 @@ public class MainGameSnake {
         }
 
     }
+
 
 
     private void drawNett(Graphics g) {

@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-import static snakeAppUpdate.MainGameSnake.*;
+import static snakeAppUpdate.MainSnake.*;
 
 
 public class Snake {

@@ -4,8 +4,8 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
 
-import static snakeAppUpdate.MainGameSnake.DEFAULT_COLOR;
-import static snakeAppUpdate.MainGameSnake.POINT_RADIUS;
+import static snakeAppUpdate.MainSnake.DEFAULT_COLOR;
+import static snakeAppUpdate.MainSnake.POINT_RADIUS;
 
 
 public class Point {
