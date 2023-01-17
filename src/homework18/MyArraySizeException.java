@@ -1,6 +1,4 @@
-package homeWork18;
-
-import java.io.IOException;
+package homework18;
 
 public class MyArraySizeException extends RuntimeException {
     public MyArraySizeException(String message) {

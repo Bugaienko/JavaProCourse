@@ -1,6 +1,5 @@
-package homeWork18;
+package homework18;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
