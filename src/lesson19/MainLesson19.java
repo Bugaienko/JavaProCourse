@@ -32,8 +32,9 @@ public class MainLesson19 {
     }
 
     static void fileReaderDemo() {
+        String separator = File.separator;
         char[] buffer= new char[100];
-        try (FileReader fr = new FileReader("char_file.txt")) {
+        try (FileReader fr = new FileReader(separator + "JavaProCourse" + separator + "src" +separator + "lesson19" + separator + "testPath.txt")) {
             fr.read(buffer);
         } catch (IOException e) {
             e.printStackTrace();
