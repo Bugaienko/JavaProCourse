@@ -18,18 +18,22 @@ public class MainHomeworkStream22 {
     public static void main(String[] args) {
         float[] arr = new float[SIZE];
         float[] arr2;
+        float[] arr3 = new float[SIZE];
 
 
         IntStream.range(0, arr.length).forEach(idx -> arr[idx] = 1);
         arr2 = Arrays.copyOf(arr, arr.length);
+//        Arrays.fill(arr3, 1);
 
         firstMethodStream(arr);
 
         try {
-            secondMethodStream(arr2);
+            arr3 = secondMethodStream(arr2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        System.out.println(Arrays.equals(arr, arr3));
 
     }
 
@@ -40,9 +44,12 @@ public class MainHomeworkStream22 {
         IntStream.range(0, arr.length).forEach(idx -> arr[idx] = (float) (1 * idx * Math.sin(0.2f + idx / 5) * Math.cos(0.2f + idx / 5) * Math.cos(0.4f + idx / 2)));
 
         System.out.println("One Thread time: " + (System.currentTimeMillis() - startTime));
+        System.out.println(arr.length);
+        System.out.println(arr[0]);
+        System.out.println(arr[arr.length-1]);
     }
 
-    public static void secondMethodStream(float[] arr) throws InterruptedException {
+    public static float[] secondMethodStream(float[] arr) throws InterruptedException {
         long startTime = System.currentTimeMillis();
 
         float[] leftArr = new float[arr.length / 2];
@@ -67,7 +74,10 @@ public class MainHomeworkStream22 {
         System.arraycopy(leftArr, 0, resultArr, 0, leftArr.length);
         System.arraycopy(rightArr, 0, resultArr, leftArr.length, rightArr.length);
 
+
         System.out.println("Two Thread time: " + (System.currentTimeMillis() - startTime));
+
+        return resultArr;
 
 //        System.out.println(Arrays.toString(resultArr));
     }
