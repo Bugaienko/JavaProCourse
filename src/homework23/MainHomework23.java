@@ -48,17 +48,17 @@ public class MainHomework23 {
         Thread t5 = new Thread(() -> printer2.print(doc1));
         Thread t6 = new Thread(() -> printer2.print(doc2));
         Thread t7 = new Thread(() -> printer2.print(doc3));
-        Thread output = new Thread(() -> printer2.output());
+        Thread consumer = new Thread(() -> printer2.output());
 
         t5.start();
         t6.start();
         t7.start();
-        output.start();
+        consumer.start();
 
         t5.join();
         t6.join();
         t7.join();
-        output.join();
+        consumer.join();
 
         System.out.println();
         System.out.println("В очередь на печать отправленны страницы: (v.2)");
