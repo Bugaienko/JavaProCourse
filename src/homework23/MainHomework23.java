@@ -28,8 +28,6 @@ public class MainHomework23 {
         Thread t1 = new Thread(() -> printer.print(doc1));
         Thread t2 = new Thread(() -> printer.print(doc2));
         Thread t3 = new Thread(() -> printer.print(doc3));
-//        Thread t4 = new Thread(() -> printer.print(doc3));
-
 
         t1.start();
         t2.start();
@@ -40,8 +38,9 @@ public class MainHomework23 {
         t3.join();
 
         System.out.println();
-        System.out.println("В очередь на печать отправленны страницы:");
+        System.out.println("В очередь на печать отправленны страницы: (v.1)");
         System.out.println(printer.getQuery());
+
 
         // Version2 with ArrayBlockingQueue
 
@@ -56,14 +55,13 @@ public class MainHomework23 {
         t7.start();
         output.start();
 
-
         t5.join();
         t6.join();
         t7.join();
         output.join();
 
         System.out.println();
-        System.out.println("В очередь на печать отправленны страницы:");
+        System.out.println("В очередь на печать отправленны страницы: (v.2)");
         System.out.println(printer2.getOutput());
 
     }
