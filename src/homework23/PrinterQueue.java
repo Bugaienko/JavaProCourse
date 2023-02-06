@@ -13,7 +13,7 @@ public class PrinterQueue {
     private BlockingQueue<List<String>> queue = new ArrayBlockingQueue<>(5);
     private List<String> output = new ArrayList<>();
 
-    public synchronized void print(List<String> list) {
+    public void print(List<String> list) {
         try {
             queue.put(list);
         } catch (InterruptedException e) {
