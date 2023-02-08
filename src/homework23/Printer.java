@@ -1,6 +1,7 @@
 package homework23;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -10,73 +11,75 @@ import java.util.List;
 public class Printer {
     private final Object locker = new Object();
     private volatile List<String> query = new ArrayList<>();
-    private volatile static int counter;
+    private long currentThreadId;
+    List<Long> ids = new ArrayList<>();
 
-    public synchronized void print(List<String> list) {
-        if (counter == 0) {
-            try {
-                printMain(list);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } else if (counter == 1) {
-            try {
-                print2(list);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } else if (counter == 2) {
-            try {
-                print3(list);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        } else  if (counter > 2 ) {
-            System.out.println("Ошибка! очередь переполнена! ");
+
+    //TODO разобраться с локером
+
+    public void print(List<String> list) {
+
+
+        synchronized (this) {
+            ids.add(Thread.currentThread().getId());
+            currentThreadId = ids.stream().mapToLong(v -> v).min().orElse(0);
         }
+        printSync(list, Thread.currentThread().getId());
 
     }
 
-    public void printMain(List<String> list) throws InterruptedException {
+    public void printSync(List<String> list, long id) {
+
+        System.out.println("sync " + currentThreadId + " " + Thread.currentThread().getId() + " " + id +  " " + list);
+
+        if (currentThreadId == id) {
+            addStr(list);
+        } else {
+            addWait(list);
+        }
+    }
+
+    private void addStr(List<String> list) {
         synchronized (locker) {
-            for (String str : list) {
-                query.add(str);
-//                System.out.print(str + ",M ");
+
+            query.addAll(list);
+            currentThreadId++;
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            counter++;
-            System.out.println();
+            locker.notifyAll();
+        }
+    }
+
+    private void addWait(List<String> list) {
+        synchronized (locker) {
+            try {
+                if (Thread.currentThread().getId() != currentThreadId) {
+                    locker.wait();
+                    query.addAll(list);
+                    currentThreadId++;
+                } else {
+                    addWait2(list);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             locker.notify();
         }
     }
 
-    public void print2(List<String> list) throws InterruptedException {
+    private void addWait2(List<String> list) {
         synchronized (locker) {
-            for (String str : list) {
-                while (counter != 1) {
-                    locker.wait();
-                }
-                query.add(str);
-//                System.out.print(str + ",2 ");
-            }
-            counter++;
-//            System.out.println("2 done");
-            locker.notifyAll();
-        }
-    }
+            try {
+                query.addAll(list);
+                currentThreadId++;
+                locker.notify();
 
-    public void print3(List<String> list) throws InterruptedException {
-        synchronized (locker) {
-
-            for (String str : list) {
-                while (counter != 2) {
-                    locker.wait();
-                }
-                query.add(str);
-//                System.out.print(str + ",3 ");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            counter++;
-//            System.out.println("3 done");
-            locker.notifyAll();
         }
     }
 
