@@ -4,7 +4,6 @@ package homework24;
  * @author Sergii Bugaienko
  */
 
-//TODO иногда лифт совершает одно лишнее движение пустым. Когда уже не осталось ожидающих людей на обоих этажах
 
 public class Lift {
     private int capacity;
@@ -40,7 +39,6 @@ public class Lift {
         synchronized (lock) {
             while (!lastFloor.getQueue().isEmpty() || !firstFloor.getQueue().isEmpty()) {
 
-
                 while (!status.equals(LiftStatus.UP)) {
 //                    System.out.println("лифт внизу. Жду лифт");
                     try {
@@ -49,7 +47,9 @@ public class Lift {
                         e.printStackTrace();
                     }
                 }
-
+                if (lastFloor.getQueue().isEmpty() && firstFloor.getQueue().isEmpty()) {
+                    break;
+                }
 //                System.out.println("Перевозим людей вниз");
                 lastFloor.goDown(capacity, firstFloor);
                 counter++;
@@ -70,6 +70,10 @@ public class Lift {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                }
+
+                if (lastFloor.getQueue().isEmpty() && firstFloor.getQueue().isEmpty()) {
+                    break;
                 }
 
 //                System.out.println("Перевозим людей вверх");
