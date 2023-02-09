@@ -18,24 +18,18 @@ public class LastFloor {
         for (int i = 0; i < waitingPeoples; i++) {
             queue.add("L:p." + i);
         }
-
-
-
-
-
     }
 
     public synchronized void goDown(int capacity, FirstFloor firstFloor) {
         if (!queue.isEmpty()) {
-            int quantity = Math.min(queue.size(), capacity);
-            List<String> movingGroup = queue.subList(queue.size() - quantity, queue.size());
+            int quantity = Math.min(this.queue.size(), capacity);
+            List<String> movingGroup = this.queue.subList(this.queue.size() - quantity, this.queue.size());
 //            System.out.println("goDown " + queue + " | " + queue.size() + " | " + quantity + " | " + movingGroup);
             movingGroup = new CopyOnWriteArrayList<>(movingGroup);
-//            System.out.println(movingGroup);
-            queue.removeAll(movingGroup);
-            firstFloor.liftArrived(movingGroup);
+            this.queue.removeAll(movingGroup);
+            firstFloor.getArrived().addAll(movingGroup);
         } else {
-            System.out.println("Сверху людей нет");
+            System.out.println("Вверху людей нет");
         }
 
     }
@@ -44,8 +38,12 @@ public class LastFloor {
         return queue;
     }
 
+    public List<String> getArrived() {
+        return arrived;
+    }
+
     public void syncColl() {
         this.queue = Collections.synchronizedList(queue);
-        this.arrived = Collections.synchronizedList(queue);
+        this.arrived = Collections.synchronizedList(arrived);
     }
 }

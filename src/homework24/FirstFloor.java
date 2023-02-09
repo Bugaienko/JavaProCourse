@@ -15,8 +15,6 @@ public class FirstFloor {
         for (int i = 0; i < waitingPeoples; i++) {
             queue.add("F:p." + i);
         }
-
-
     }
 
     public List<String> getArrived() {
@@ -24,13 +22,29 @@ public class FirstFloor {
     }
 
     public synchronized void liftArrived(List<String> movingGroup) {
-//        System.out.println("group " + movingGroup);
         arrived.addAll(movingGroup);
+    }
 
+    public List<String> getQueue() {
+        return queue;
     }
 
     public void syncColl() {
         queue = Collections.synchronizedList(queue);
         arrived = Collections.synchronizedList(arrived);
+    }
+
+    public synchronized void goUp(int capacity, LastFloor lastFloor) {
+        if (!queue.isEmpty()) {
+            int quantity = Math.min(capacity, queue.size());
+            List<String> movingGroup = queue.subList(queue.size() - quantity, queue.size());
+            movingGroup = new CopyOnWriteArrayList<>(movingGroup);
+//            System.out.println(movingGroup);
+            queue.removeAll(movingGroup);
+            lastFloor.getArrived().addAll(movingGroup);
+//            System.out.println(lastFloor.getArrived());
+        } else {
+            System.out.println("Внизу людей нет");
+        }
     }
 }

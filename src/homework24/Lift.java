@@ -4,6 +4,8 @@ package homework24;
  * @author Sergii Bugaienko
  */
 
+//TODO иногда лифт совершает одно лишнее движение пустым. Когда уже не осталось ожидающих людей на обоих этажах
+
 public class Lift {
     private int capacity;
     private LiftStatus status;
@@ -36,11 +38,11 @@ public class Lift {
 
     private void goDown(FirstFloor firstFloor, LastFloor lastFloor) {
         synchronized (lock) {
-            for (int i = 0; i < 5; i++) {
+            while (!lastFloor.getQueue().isEmpty() || !firstFloor.getQueue().isEmpty()) {
 
 
                 while (!status.equals(LiftStatus.UP)) {
-                    System.out.println("лифт внизу");
+//                    System.out.println("лифт внизу. Жду лифт");
                     try {
                         lock.wait();
                     } catch (InterruptedException e) {
@@ -48,7 +50,7 @@ public class Lift {
                     }
                 }
 
-                System.out.println("Перевозим людей вниз");
+//                System.out.println("Перевозим людей вниз");
                 lastFloor.goDown(capacity, firstFloor);
                 counter++;
                 status = LiftStatus.DOWN;
@@ -59,9 +61,10 @@ public class Lift {
 
     private void goUp(FirstFloor firstFloor, LastFloor lastFloor) {
         synchronized (lock) {
-            for (int i = 0; i < 5; i++) {
+            while (!lastFloor.getQueue().isEmpty() || !firstFloor.getQueue().isEmpty()) {
+
                 while (!status.equals(LiftStatus.DOWN)) {
-                    System.out.println("лифт вверху");
+//                    System.out.println("лифт вверху. Жду лифт");
                     try {
                         lock.wait();
                     } catch (InterruptedException e) {
@@ -69,7 +72,8 @@ public class Lift {
                     }
                 }
 
-                System.out.println("Перевозим людей вверх");
+//                System.out.println("Перевозим людей вверх");
+                firstFloor.goUp(capacity, lastFloor);
                 counter++;
                 status = LiftStatus.UP;
                 lock.notify();
@@ -77,5 +81,7 @@ public class Lift {
         }
     }
 
-
+    public int getCounter() {
+        return counter;
+    }
 }
