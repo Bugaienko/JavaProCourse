@@ -56,7 +56,7 @@ public class Car implements Runnable {
             race.getStages().get(i).go(this);
         }
         getFINISH().countDown();
-        if (getFINISH().getCount() == 3) {
+        if (getFINISH().getCount() == CARS_COUNT - 1) {
             winner = this;
             System.out.println(getName() + " WIN!");
         }

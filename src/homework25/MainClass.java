@@ -9,8 +9,8 @@ import java.util.concurrent.CountDownLatch;
 public class MainClass {
     private static final int CARS_COUNT = 4;
 
-    private static CountDownLatch START = new CountDownLatch(CARS_COUNT);
-    private static CountDownLatch FINISH = new CountDownLatch(CARS_COUNT);
+    private static final CountDownLatch START = new CountDownLatch(CARS_COUNT);
+    private static final CountDownLatch FINISH = new CountDownLatch(CARS_COUNT);
 
     public static CountDownLatch getSTART() {
         return START;
@@ -18,6 +18,10 @@ public class MainClass {
 
     public static CountDownLatch getFINISH() {
         return FINISH;
+    }
+
+    public static int getCarsCount() {
+        return CARS_COUNT;
     }
 
     public static void main(String[] args) {
@@ -52,7 +56,6 @@ public class MainClass {
         }
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
         System.out.println("Победитель гонки! -> " + Car.getWinner());
-
 
     }
 
