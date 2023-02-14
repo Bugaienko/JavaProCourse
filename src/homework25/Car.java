@@ -9,7 +9,7 @@ import static homework25.MainClass.getSTART;
  */
 
 public class Car implements Runnable {
-    private static int carsCount;
+    private static int carNumbers;
     private Race race;
     private int speed;
     private String name;
@@ -29,8 +29,8 @@ public class Car implements Runnable {
     public Car(Race race, int speed) {
         this.race = race;
         this.speed = speed;
-        carsCount++;
-        this.name = "Участник #" + carsCount;
+        carNumbers++;
+        this.name = "Участник #" + carNumbers;
 
     }
 
@@ -56,7 +56,7 @@ public class Car implements Runnable {
             race.getStages().get(i).go(this);
         }
         getFINISH().countDown();
-        if (getFINISH().getCount() == carsCount - 1) {
+        if (getFINISH().getCount() == carNumbers - 1) {
             winner = this;
             System.out.println(getName() + " WIN!");
         }
