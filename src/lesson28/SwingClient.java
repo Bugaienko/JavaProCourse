@@ -1,6 +1,12 @@
 package lesson28;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.io.BufferedReader;
