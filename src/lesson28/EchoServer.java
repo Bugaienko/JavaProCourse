@@ -1,6 +1,9 @@
-package lesson27;
+package lesson28;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -25,7 +28,7 @@ public class EchoServer {
                 do {
                     message = reader.readLine();
                     System.out.println("Client says: " + message);
-                    writer.println("Echo: " + message);
+                    writer.println((message.equals("exit")? "":"Echo: ") + message);
                     writer.flush();
                 } while (!message.equals("exit"));
                 reader.close();
