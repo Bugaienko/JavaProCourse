@@ -109,7 +109,7 @@ public class SwingClient extends JFrame {
             String echo = "";
             writer.println(msgField.getText());
             writer.flush();
-            dialogue.append("   I: " + msgField.getText() + "\n");
+            dialogue.append("   I:  " + msgField.getText() + "\n");
             echo = reader.readLine();
             dialogue.append("   A:  " + echo + "\n");
             msgField.setText("");
@@ -118,15 +118,11 @@ public class SwingClient extends JFrame {
 
                 dialogue.append("   S: disconnect done" + "\n");
                 switchOfButtons();
-//                connect.setText("Connect");
-////                connect.setEnabled(true);
-//                isConnectServer = false;
             }
         } catch (SocketException se) {
             System.out.println("Connection to server lost");
             connect.setForeground(new Color(0, 100, 0));
             connect.setText("Connect");
-//            connect.setEnabled(true);
             isConnectServer = false;
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -138,7 +134,7 @@ public class SwingClient extends JFrame {
         String echo = "";
         writer.println("exit");
         writer.flush();
-        dialogue.append("   S: connection to server los" + "\n");
+        dialogue.append("   S:  connection to server los" + "\n");
         try {
             echo = reader.readLine();
         } catch (IOException e) {
@@ -150,6 +146,7 @@ public class SwingClient extends JFrame {
 
     private void switchOfButtons() {
         connect.setForeground(new Color(0, 100, 0));
+        dialogue.setBackground(new Color(253, 239,255));
         connect.setText("Connect");
         isConnectServer = false;
         msgField.setEnabled(false);
@@ -162,8 +159,8 @@ public class SwingClient extends JFrame {
             writer = new PrintWriter(socket.getOutputStream());
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             connect.setForeground(Color.RED);
+            dialogue.setBackground(new Color(224, 255,224));
             connect.setText("Disconnect");
-//            connect.setEnabled(false);
             isConnectServer = true;
             dialogue.append("   S:  connection to server -> successfully" + "\n");
             System.out.println("Connect to server...");
