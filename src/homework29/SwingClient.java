@@ -1,4 +1,4 @@
-package homewrork29;
+package homework29;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +9,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.Scanner;
-
-import static lesson29.ChatServer.SERVER_PORT;
 
 /**
  * @author Sergii Bugaienko
@@ -25,8 +22,9 @@ public class SwingClient extends JFrame {
     PrintWriter writer;
     BufferedReader reader;
     Boolean isConnectServer = false;
-    private final static String SERVER_IP = "localhost";
-    private final static int SERVER_PORT = 2048;
+//    private final static String SERVER_IP = "localhost";
+    private final static String SERVER_IP = "135.125.151.98";
+    private final static int SERVER_PORT = 512;
     public static String EXIT_CMD = "/exit";
     public static String RENAME_CMD = "/rn";
 

@@ -1,4 +1,4 @@
-package homewrork29;
+package homework29;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 public class ChatServer {
-    public static int SERVER_PORT = 2048;
+    public static int SERVER_PORT = 512;
 
     public final static String EXIT_CMD = "/exit";
     public final static String RENAME_CMD = "/rn";
