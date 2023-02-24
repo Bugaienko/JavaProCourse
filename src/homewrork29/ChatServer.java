@@ -16,8 +16,10 @@ import java.util.List;
 public class ChatServer {
     public static int SERVER_PORT = 2048;
 
-    public static String EXIT_CMD = "/exit";
-    public static String RENAME_CMD = "/rn";
+    public final static String EXIT_CMD = "/exit";
+    public final static String RENAME_CMD = "/rn";
+    public final static String USERS_SHOW_CMD = "/users";
+    public final static String HELP_CMD = "/help";
 
     private List<ClientHandler> clients;
 
@@ -37,19 +39,6 @@ public class ChatServer {
                 clients.add(client);
                 new Thread(client).start();
                 System.out.println(name + ": joined.");
-
-//                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-//                PrintWriter writer = new PrintWriter(socket.getOutputStream());
-//                String message = "";
-//                do {
-//                    message = reader.readLine();
-//                    System.out.println("Client says: " + message);
-//                    writer.println((message.equals("exit")? "" : "Echo: ") + message);
-//                    writer.flush();
-//                } while (!message.equals("exit"));
-//                reader.close();
-//                writer.close();
-//                System.out.println("Client disconnected ...");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,11 +76,13 @@ public class ChatServer {
             try {
                 do {
                     message = reader.readLine();
-                    if (message.equals(EXIT_CMD)) {
-                        sendToAll(name, "left the chat");
-                        send(EXIT_CMD);
-                    } else {
+                    if (isCommandInMessage(message).length == 0) {
+//                        if (message.equals(EXIT_CMD)) {
+//                            sendToAll(name, "left the chat");
+//                            send(EXIT_CMD);
+//                        } else {
                         sendToAll(name, message);
+//                        }
                     }
                     System.out.println(name + ": " + message);
                 } while (!message.equalsIgnoreCase(EXIT_CMD));
@@ -104,9 +95,56 @@ public class ChatServer {
             System.out.println(name + ": disconnected.");
         }
 
-        public void send(String message) {
+        private void send(String message) {
             writer.println(message);
             writer.flush();
         }
+
+        private String[] isCommandInMessage(String message) {
+            String[] messageWithoutNoCommand = new String[0];
+
+            if (message.length() < 1) {
+                return messageWithoutNoCommand;
+            }
+            String[] strings = message.split(" ");
+
+            switch (strings[0]) {
+                case EXIT_CMD:
+                    sendToAll(name, "left the chat");
+                    send(EXIT_CMD);
+                    return strings;
+                case RENAME_CMD:
+                    if (strings[1] != null) {
+                        name = strings[1];
+                        send("You changed your name to: " + name);
+                        sendToAll(name, "My new name: " + name);
+                    }
+                    return strings;
+                case USERS_SHOW_CMD:
+                    StringBuilder stringBuilder = new StringBuilder("Users online: \n");
+                    int count = 0;
+                    for (ClientHandler client: clients) {
+                        stringBuilder.append(client.name);
+                        stringBuilder.append("\n");
+                        count++;
+                    }
+                    stringBuilder.append("Total: " + count);
+                    send(stringBuilder.toString());
+                    return strings;
+                case HELP_CMD:
+                    StringBuilder sB2 = new StringBuilder("Commands: \n");
+                    sB2.append("/help -> read help \n");
+                    sB2.append("/users -> show online users \n");
+                    sB2.append("/rn newName -> change Name to newName \n");
+                    sB2.append("/exit -> Exit");
+                    send(sB2.toString());
+
+
+                default:
+                    return messageWithoutNoCommand;
+
+            }
+        }
+
     }
 }

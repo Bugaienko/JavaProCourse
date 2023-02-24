@@ -204,7 +204,7 @@ public class SwingClient extends JFrame {
             dialogue.setBackground(new Color(224, 255, 224));
             connect.setText("Disconnect");
             isConnectServer = true;
-            dialogue.append("   S:  connection to server -> successfully" + "\n");
+            dialogue.append("   S:  connection to server -> successfully. For help sens /help" + "\n");
             msgField.setEnabled(true);
             send.setEnabled(true);
             msgField.requestFocusInWindow();
