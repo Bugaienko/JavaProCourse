@@ -120,18 +120,6 @@ public class SwingClient extends JFrame {
             msgField.setText("");
             msgField.requestFocusInWindow();
 
-//            echo = reader.readLine();
-//            dialogue.append("   A:  " + echo + "\n");
-//            if (echo.equals("exit")) {
-//
-//                dialogue.append("   S: disconnect done" + "\n");
-//                switchOfButtons();
-//            }
-//        }  catch (SocketException se) {
-//            System.out.println("Connection to server lost");
-//            connect.setForeground(new Color(0, 100, 0));
-//            connect.setText("Connect");
-//            isConnectServer = false;
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
