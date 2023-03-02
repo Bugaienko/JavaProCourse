@@ -26,6 +26,7 @@ public class SwingClient extends JFrame {
 //    private final static String SERVER_IP = "135.125.151.98";
     private final static int SERVER_PORT = 512;
     public static String EXIT_CMD = "/exit";
+    public static String GET_NAME_CMD = "/clnm";
     public static String RENAME_CMD = "/rn";
 
 
@@ -142,6 +143,12 @@ public class SwingClient extends JFrame {
                     if (message.equals(EXIT_CMD)) {
                         dialogue.append("   S: disconnect done" + "\n");
                         switchOfButtons();
+                     } else if (message.contains(GET_NAME_CMD) && message.indexOf(GET_NAME_CMD) == 0) {
+                        System.out.println("Надо бы имя поменять");
+                        String[] mes = message.split(" ");
+                        if (mes[1].length() > 0) {
+                            setTitle("Network chat client :: " + mes[1]);
+                        }
                     } else {
                         dialogue.append("   " + message + "\n");
                     }

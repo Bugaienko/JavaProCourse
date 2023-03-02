@@ -24,6 +24,8 @@ public class ChatServer {
     public final static String HELP_CMD = "/help";
     public final static String AUTH_CMD = "/auth";
     public final static String PASS_CHANGE_CMD = "/pass";
+    public static String GET_NAME_CMD = "/clnm";
+
     private DbHandler dbHandler;
 
     private List<ClientHandler> clients;
@@ -138,6 +140,7 @@ public class ChatServer {
                     }
                 } while (!isAuthorized);
                 name = user.getName();
+                send(GET_NAME_CMD + " " + name);
                 do {
                     message = reader.readLine();
                     if (isCommandInMessage(message).length == 0) {
