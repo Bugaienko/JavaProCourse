@@ -22,8 +22,8 @@ public class SwingClient extends JFrame {
     PrintWriter writer;
     BufferedReader reader;
     Boolean isConnectServer = false;
-    private final static String SERVER_IP = "localhost";
-//    private final static String SERVER_IP = "135.125.151.98";
+//    private final static String SERVER_IP = "localhost";
+    private final static String SERVER_IP = "135.125.151.98";
     private final static int SERVER_PORT = 512;
     public static String EXIT_CMD = "/exit";
     public static String GET_NAME_CMD = "/clnm";
@@ -204,6 +204,7 @@ public class SwingClient extends JFrame {
             System.out.println("Connect to server...");
             new Thread(new CommandHandler(reader)).start();
         } catch (IOException e) {
+            isConnectServer = false;
             System.out.println("Can't Connect to server...");
         }
 
