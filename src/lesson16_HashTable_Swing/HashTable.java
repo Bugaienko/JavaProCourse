@@ -1,4 +1,4 @@
-package lesson16;
+package lesson16_HashTable_Swing;
 
 
 import javax.swing.JFrame;
@@ -18,24 +18,6 @@ public class HashTable<K, V> extends JFrame {
 
     public HashTable() {
         this.buckets = new Entry[capacity];
-
-//        setTitle("HashMap work scheme");
-//        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//        setSize(1920, 600);
-//        setLocationRelativeTo(null);
-//
-//        CanvasPanel canvasPanel = new CanvasPanel();
-//        canvasPanel.setBackground(Color.lightGray);
-//
-//        Button button = new Button("Repaint");
-//        button.addActionListener(e -> {
-//            System.out.println("Repaint");
-//            canvasPanel.repaint();
-//        });
-//        add(canvasPanel, BorderLayout.CENTER);
-//        add(button, BorderLayout.SOUTH);
-//
-//        setVisible(true);
     }
 
     public HashTable(int capacity) {
@@ -73,23 +55,7 @@ public class HashTable<K, V> extends JFrame {
                 buckets[idx] = entry;
             } else {
                 Entry<K, V> pointer = buckets[idx];
-
-//                //if key equal - re-write value
-//                Entry<K, V> pointer;
-//                Entry<K, V> temp = buckets[idx];
-//                while (temp != null) {
-//                    if (temp.key.equals(key)) {
-//                        temp.value = value;
-//                        return;
-//                    }
-//                    if (temp.next == null) {
-//                        pointer = temp;
-//                    }
-//                    temp = temp.next;
-//                }
-//                pointer.next = entry;
-//              // end IF equal
-
+                
                 while (pointer.next != null) {
                     pointer = pointer.next;
                 }

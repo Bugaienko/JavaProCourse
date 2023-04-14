@@ -1,4 +1,4 @@
-package lesson16;
+package lesson16_HashTable_Swing;
 
 import java.util.ArrayList;
 import java.util.List;
