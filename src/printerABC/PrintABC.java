@@ -10,12 +10,15 @@ import java.util.List;
 
 public class PrintABC {
     private final Object monitor = new Object();
-    private static List<Character> result = Collections.synchronizedList(new ArrayList<>());
+//    private static List<Character> result = Collections.synchronizedList(new ArrayList<>());
+    private static List<Character> result = new ArrayList<>();
     private volatile char currentChar = 'A';
 
     public static List<Character> getResult() {
         return result;
     }
+
+
 
     public void printA() {
         synchronized (monitor) {
