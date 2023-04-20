@@ -1,12 +1,21 @@
 package homework23;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * @author Sergii Bugaienko
  */
 
 public class PrintABC {
     private final Object monitor = new Object();
+    private static List<Character> result = Collections.synchronizedList(new ArrayList<>());
     private volatile char currentChar = 'A';
+
+    public static List<Character> getResult() {
+        return result;
+    }
 
     public void printA() {
         synchronized (monitor) {
@@ -15,6 +24,7 @@ public class PrintABC {
                     while (currentChar != 'A') {
                         monitor.wait();
                     }
+                    result.add('A');
                     System.out.print('A');
                     currentChar = 'B';
                     monitor.notifyAll();
@@ -33,6 +43,7 @@ public class PrintABC {
                     while (currentChar != 'B') {
                         monitor.wait();
                     }
+                    result.add('B');
                     System.out.print('B');
                     currentChar = 'C';
                     monitor.notifyAll();
@@ -51,6 +62,7 @@ public class PrintABC {
                     while (currentChar != 'C') {
                         monitor.wait();
                     }
+                    result.add('C');
                     System.out.print('C');
                     currentChar = 'A';
                     monitor.notifyAll();
